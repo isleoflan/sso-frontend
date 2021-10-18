@@ -1,0 +1,20 @@
+<app-card>
+  <img src="/assets/isleoflan.svg" alt="Isle of LAN">
+  <p>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat
+  </p>
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+      <label for="username">Username</label>
+      <input type="text" id="username" formControlName="username" autocomplete="username">
+    </div>
+    <div class="form-control">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" autocomplete="current-password">
+      <a class="form-control-action" routerLink="/reset-password" title="password reset">password reset</a>
+    </div>
+    <div class="form-actions">
+      <button class="button button-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+    </div>
+  </form>
+</app-card>
