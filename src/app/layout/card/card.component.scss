@@ -1,0 +1,10 @@
+@use "abstracts" as *;
+
+:host{
+  border-radius: 2.4rem;
+  @include shadow();
+  padding: 4.8rem;
+  background: white;
+  display: grid;
+  grid-gap: 1.5em;
+}

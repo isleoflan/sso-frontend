@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@use "base/normalize";
+@use "abstracts" as *;
 
+@use "base/normalize";
+@use "base/typographie";
+
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;800&display=swap');
+
+/*
 @keyframes show-bg {
   0% {
     opacity: 0;
@@ -11,36 +17,42 @@
     left: -10vw;
   }
 }
+*/
+
+
+*{
+  box-sizing: border-box;
+}
+
+html{
+  font-family: "Changa", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+}
+body{
+  font-size: 1.6rem;
+  line-height: 1.375;
+  display: flex;
+  flex-direction: column;
+}
 
 body{
   display: grid;
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
   position: relative;
+
   &::before{
     content: "";
     position: absolute;
-    top: -10vh;
-    left: -10vw;
     width: 60vw;
-    height: 120vh;
-    background: linear-gradient(
-        15deg, #2764ae 50%, #549fd7 100%);
-    -webkit-box-shadow: 0 0 72px rgb(0 0 0 / 26%);
-    -moz-box-shadow: 0 0 72px rgba(0, 0, 0, 0.26);
-    box-shadow: 0 0 72px rgb(0 0 0 / 26%);
-    -webkit-transform: skew(
-        -15deg);
-    -moz-transform: skew(-15deg);
-    -ms-transform: skew(-15deg);
-    -o-transform: skew(-15deg);
-    transform: skew(
-        -15deg);
+    height: 100vh;
+    left: -10vw;
+    background: linear-gradient(45deg, $color-primary-dark 50%, $color-primary-light 100%);
+    @include shadow();
+    transform: skew(-15deg);
+    animation: show-bg 1s forwards cubic-bezier(0, 0, 0.25, 1);
+   // opacity: 0;
     z-index: -1;
-    animation-name: show-bg;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-timing-function: cubic-bezier(0, 0, 0.25, 1);
-    opacity: 0;
   }
 }
