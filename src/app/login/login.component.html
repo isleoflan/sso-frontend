@@ -6,15 +6,15 @@
   <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-control">
       <label for="username">Username</label>
-      <input type="text" id="username" formGroupName="username" autocomplete="username">
+      <input type="text" id="username" formControlName="username" autocomplete="username">
     </div>
     <div class="form-control">
       <label for="password">Password</label>
-      <input type="password" id="password" formGroupName="password" autocomplete="current-password">
-      <a class="form-control-action" routerLink="/reset" title="password reset">password reset</a>
+      <input type="password" id="password" formControlName="password" autocomplete="current-password">
+      <a class="form-control-action" routerLink="/reset-password" title="password reset">password reset</a>
     </div>
     <div class="form-actions">
-      <button class="button button-primary" type="submit">Login</button>
+      <button class="button button-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
     </div>
   </form>
 </app-card>
