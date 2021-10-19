@@ -37,7 +37,7 @@ export class MockAuthApiService implements AbstractAuthApiService {
     const data: RequestInformation = {
       id: faker.datatype.uuid(),
       title: faker.lorem.word(),
-      description: faker.lorem.paragraph(),
+      description: faker.lorem.sentences(3),
       baseUrl: 'https://www.isleoflan.ch',
       icon: faker.image.avatar()
     }

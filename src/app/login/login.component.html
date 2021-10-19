@@ -1,8 +1,9 @@
-<app-card>
-  <img src="/assets/isleoflan.svg" alt="Isle of LAN">
+<app-card *ngIf="(requestInformation$ | async) as requestInformation">
+  <img [src]="requestInformation.icon" alt="Isle of LAN" height="70">
   <p>
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat
+    {{requestInformation.description}}
   </p>
+
   <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-control">
       <label for="username">Username</label>
