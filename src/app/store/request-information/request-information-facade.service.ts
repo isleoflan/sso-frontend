@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {EMPTY, Observable, of} from 'rxjs';
-import {catchError, filter, finalize, share, switchMap, tap} from 'rxjs/operators';
+import {catchError, filter, finalize, share, startWith, switchMap, tap} from 'rxjs/operators';
 import {AbstractAuthApiService} from '../../api/abstract-auth-api.service';
 import {RequestInformationDto} from '../../interfaces/dto/request-information-dto';
 import {RequestInformation} from '../../interfaces/payload/request-information';
@@ -22,7 +22,7 @@ export class RequestInformationFacadeService extends FacadeService {
   }
 
   requestInformation$ = (requestInformationDto: RequestInformationDto): Observable<RequestInformation | null> => this.muteFirst(
-    this.requireRequestInformation$(requestInformationDto),
+    this.requireRequestInformation$(requestInformationDto).pipe(startWith(null)),
     this.store.select(RequestInformationStoreSelectors.selectRequestInformation)
   );
 
