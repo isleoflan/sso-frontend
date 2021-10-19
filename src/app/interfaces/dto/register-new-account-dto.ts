@@ -14,5 +14,5 @@ export interface RegisterNewAccountDto {
   zipCode: string;
   city: string;
 
-  birthDate: Date;
+  birthDate: string;
 }
