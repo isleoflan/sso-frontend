@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { MockResetApiService } from './mock-reset-api.service';
+import {MockResetApiService} from './mock-reset-api.service';
 
 describe('MockResetApiService', () => {
   let service: MockResetApiService;

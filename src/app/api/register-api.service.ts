@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {first} from 'rxjs/operators';
 import {CheckEmailDto} from '../interfaces/dto/check-email-dto';
@@ -13,11 +13,12 @@ import {AbstractRegisterApiService} from './abstract-register-api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterApiService implements AbstractRegisterApiService{
+export class RegisterApiService implements AbstractRegisterApiService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   checkEmail(checkEmailDto: CheckEmailDto): Observable<Payload<Availability>> {
     return this.http.get<Payload<Availability>>('/v1/register/check/email', {params: {...checkEmailDto}}).pipe(first());
@@ -28,7 +29,7 @@ export class RegisterApiService implements AbstractRegisterApiService{
   }
 
   registerNewAccount(registerNewAccountDto: RegisterNewAccountDto): Observable<Payload<null>> {
-    return this.http.get<Payload<null>>('/v1/register/new', {params: {...registerNewAccountDto}}).pipe(first());
+    return this.http.post<Payload<null>>('/v1/register/new', {registerNewAccountDto}).pipe(first());
   }
 
   verifyEmail(verifyEmailDDto: VerifyEmailDto): Observable<Payload<null>> {

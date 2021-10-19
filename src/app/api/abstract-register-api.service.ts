@@ -9,7 +9,10 @@ import {Availability} from '../interfaces/payload/availability';
 
 export abstract class AbstractRegisterApiService {
   public abstract checkEmail(checkEmailDto: CheckEmailDto): Observable<Payload<Availability>>;
+
   public abstract checkUsername(checkUsernameDto: CheckUsernameDto): Observable<Payload<Availability>>;
+
   public abstract registerNewAccount(registerNewAccountDto: RegisterNewAccountDto): Observable<Payload<null>>;
+
   public abstract verifyEmail(verifyEmailDDto: VerifyEmailDto): Observable<Payload<null>>;
 }

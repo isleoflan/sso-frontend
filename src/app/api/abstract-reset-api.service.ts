@@ -9,6 +9,8 @@ import {SessionRedirect} from '../interfaces/payload/session-redirect';
 export abstract class AbstractResetApiService {
 
   public abstract requestReset(requestResetDto: RequestResetDto): Observable<Payload<null>>;
+
   public abstract verifyResetRequest(verifyResetRequestDto: VerifyResetRequestDto): Observable<Payload<null>>;
+
   public abstract executeReset(executeResetDto: ExecuteResetDto): Observable<Payload<SessionRedirect>>;
 }

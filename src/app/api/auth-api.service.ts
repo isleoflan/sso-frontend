@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {first} from 'rxjs/operators';
 import {LoginWithSessionIdDto} from '../interfaces/dto/login-with-session-id-dto';
@@ -16,11 +16,12 @@ import {AbstractAuthApiService} from './abstract-auth-api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthApiService implements AbstractAuthApiService{
+export class AuthApiService implements AbstractAuthApiService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   loginWithSessionId(loginWithSessionIdDto: LoginWithSessionIdDto): Observable<Payload<Redirect>> {
     return this.http.post<Payload<Redirect>>('/v1/auth/login', loginWithSessionIdDto).pipe(first());

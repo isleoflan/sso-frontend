@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {CheckEmailDto} from '../interfaces/dto/check-email-dto';
 import {CheckUsernameDto} from '../interfaces/dto/check-username-dto';
@@ -11,7 +11,7 @@ import {AbstractRegisterApiService} from './abstract-register-api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class MockRegisterApiService implements AbstractRegisterApiService{
+export class MockRegisterApiService implements AbstractRegisterApiService {
 
   checkEmail(checkEmailDto: CheckEmailDto): Observable<Payload<Availability>> {
     const data: Availability = {

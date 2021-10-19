@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {first} from 'rxjs/operators';
 import {ExecuteResetDto} from '../interfaces/dto/execute-reset-dto';
@@ -12,11 +12,12 @@ import {MockResetApiService} from './mock-reset-api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ResetApiService implements MockResetApiService{
+export class ResetApiService implements MockResetApiService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   executeReset(executeResetDto: ExecuteResetDto): Observable<Payload<SessionRedirect>> {
     return this.http.post<Payload<SessionRedirect>>('/v1/reset/execute', {executeResetDto}).pipe(first());

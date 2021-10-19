@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+
+import * as faker from 'faker';
 import {Observable, of} from 'rxjs';
 import {ExecuteResetDto} from '../interfaces/dto/execute-reset-dto';
 import {RequestResetDto} from '../interfaces/dto/request-reset-dto';
@@ -7,12 +9,10 @@ import {Payload} from '../interfaces/payload';
 import {SessionRedirect} from '../interfaces/payload/session-redirect';
 import {AbstractResetApiService} from './abstract-reset-api.service';
 
-import * as faker from 'faker';
-
 @Injectable({
   providedIn: 'root'
 })
-export class MockResetApiService implements AbstractResetApiService{
+export class MockResetApiService implements AbstractResetApiService {
 
   executeReset(executeResetDto: ExecuteResetDto): Observable<Payload<SessionRedirect>> {
     const data: SessionRedirect = {

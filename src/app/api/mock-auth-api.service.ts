@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+
+import * as faker from 'faker';
 import {Observable, of} from 'rxjs';
 import {LoginWithSessionIdDto} from '../interfaces/dto/login-with-session-id-dto';
 import {LoginWithUserCredentialsDto} from '../interfaces/dto/login-with-user-credentials-dto';
@@ -10,8 +12,6 @@ import {RequestInformation} from '../interfaces/payload/request-information';
 import {SessionInformation} from '../interfaces/payload/session-information';
 import {SessionRedirect} from '../interfaces/payload/session-redirect';
 import {AbstractAuthApiService} from './abstract-auth-api.service';
-
-import * as faker from 'faker';
 
 @Injectable({
   providedIn: 'root'
