@@ -1,5 +1,7 @@
+import {AuthStoreReducer} from './auth';
 import {RequestInformationStoreReducer} from './request-information';
 
 export interface AppState {
-  requestInformation: RequestInformationStoreReducer.State
+  auth: AuthStoreReducer.State;
+  requestInformation: RequestInformationStoreReducer.State;
 }

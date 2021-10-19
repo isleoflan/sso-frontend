@@ -32,11 +32,11 @@ export class AuthApiService implements AbstractAuthApiService {
   }
 
   requestInformation(requestInformationDto: RequestInformationDto): Observable<Payload<RequestInformation>> {
-    return this.http.get<Payload<RequestInformation>>('/v1/auth/login', {params: {...requestInformationDto}}).pipe(first());
+    return this.http.get<Payload<RequestInformation>>('/v1/auth/request/info', {params: {...requestInformationDto}}).pipe(first());
   }
 
   sessionInformation(sessionInformationDto: SessionInformationDto): Observable<Payload<SessionInformation>> {
-    return this.http.get<Payload<SessionInformation>>('/v1/auth/login', {params: {...sessionInformationDto}}).pipe(first());
+    return this.http.get<Payload<SessionInformation>>('/v1/auth/request/session', {params: {...sessionInformationDto}}).pipe(first());
   }
 
 }

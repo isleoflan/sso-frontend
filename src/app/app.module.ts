@@ -9,6 +9,8 @@ import {MockResetApiService} from './api/mock-reset-api.service';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {InitLoginComponent} from './init-login/init-login.component';
+import {CardModule} from './layout/card/card.module';
 import {RedirectComponent} from './redirect/redirect.component';
 import {AppStoreModule} from './store/app-store.module';
 
@@ -16,11 +18,13 @@ import {AppStoreModule} from './store/app-store.module';
   declarations: [
     AppComponent,
     RedirectComponent,
+    InitLoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AppStoreModule,
+    CardModule,
   ],
   providers: [
     {provide: AbstractAuthApiService, useClass: MockAuthApiService},

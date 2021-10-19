@@ -5,7 +5,7 @@ import {
   loadRequestInformation,
   loadRequestInformationCancel,
   loadRequestInformationFailure,
-  loadRequestInformationSuccess
+  loadRequestInformationSuccess,
 } from './request-information.actions';
 
 

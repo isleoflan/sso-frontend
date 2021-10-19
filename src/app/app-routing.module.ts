@@ -1,14 +1,28 @@
 import {InjectionToken, NgModule} from '@angular/core';
 import {ActivatedRouteSnapshot, RouterModule, Routes} from '@angular/router';
+import {CanLoadIfLoginRequestIdIsSetGuard} from './guards/can-load-if-login-request-id-is-set.guard';
+import {InitLoginComponent} from './init-login/init-login.component';
 import {RedirectComponent} from './redirect/redirect.component';
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
 const routes: Routes = [
+
   {
-    path: '',
+    path: 'login',
+    canLoad: [
+      CanLoadIfLoginRequestIdIsSetGuard
+    ],
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
+  /*
+  {
+    path: 'continue',
+    canLoad: [
+      CanLoadIfLoginRequestIdIsSetGuard
+    ]
+  },
+   */
   {
     path: 'reset-password',
     loadChildren: () => import('./reset-password/reset-password.module').then(m => m.ResetPasswordModule)
@@ -17,11 +31,26 @@ const routes: Routes = [
     path: 'set-password',
     loadChildren: () => import('./set-password/set-password.module').then(m => m.SetPasswordModule)
   },
+  /*
+  {
+    path: 'create-account'
+  },
+   */
   {
     path: 'redirect',
     canActivate: [externalUrlProvider],
     component: RedirectComponent
-  }
+  },
+
+  {
+    path: ':loginRequestId',
+    component: InitLoginComponent,
+  },
+  {
+    path: '**',
+    component: RedirectComponent
+  },
+
 ];
 
 @NgModule({
