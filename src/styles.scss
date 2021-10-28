@@ -6,19 +6,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;800&display=swap');
 
-/*
+
 @keyframes show-bg {
   0% {
     opacity: 0;
-    left: -20vw;
+    left: -100vw;
   }
   100% {
     opacity: 1;
-    left: -10vw;
+    left: -50vw;
   }
 }
-*/
-
 
 *{
   box-sizing: border-box;
@@ -52,7 +50,7 @@ body{
     @include shadow();
     transform: skew(-15deg);
     animation: show-bg 1s forwards cubic-bezier(0, 0, 0.25, 1);
-    // opacity: 0;
+    opacity: 0;
     background: linear-gradient(45deg, $color-primary-dark 50%, $color-primary-light 100%);
   }
 }

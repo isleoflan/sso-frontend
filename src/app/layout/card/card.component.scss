@@ -1,10 +1,25 @@
 @use "abstracts" as *;
 
 :host{
-  border-radius: 2.4rem;
+  display: grid;
   @include shadow();
   padding: 4.8rem;
+  animation: show-card 500ms forwards cubic-bezier(0, 0, 0.5, 1) 500ms;
+  opacity: 0;
+  border-radius: 2.4rem;
+
   background: white;
-  display: grid;
+
   grid-gap: 1.5em;
+}
+
+@keyframes show-card {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
