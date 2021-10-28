@@ -12,19 +12,20 @@ import {RequestInformationFacadeService} from '../store/request-information/requ
 })
 export class LoginComponent implements OnInit {
 
-  requestInformation$ = this.requestInformationFacadeService.requestInformation$({loginRequestId: 'asdfasdfasdf'});
+  requestInformation$ = this.requestInformationFacadeService.requestInformation$;
   loginForm: FormGroup = new FormGroup({});
 
 
   constructor(
     private requestInformationFacadeService: RequestInformationFacadeService,
-    //private authApiService: AbstractAuthApiService,
     private authFacadeService: AuthFacadeService,
     private router: Router
   ) {
   }
 
   ngOnInit(): void {
+    this.authFacadeService.unsetGlobalSessionId();
+
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])

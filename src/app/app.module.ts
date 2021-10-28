@@ -5,6 +5,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {AbstractAuthApiService} from './api/abstract-auth-api.service';
 import {AbstractRegisterApiService} from './api/abstract-register-api.service';
 import {AbstractResetApiService} from './api/abstract-reset-api.service';
+
 import {MockAuthApiService} from './api/mock-auth-api.service';
 import {MockRegisterApiService} from './api/mock-register-api.service';
 import {MockResetApiService} from './api/mock-reset-api.service';
@@ -33,6 +34,7 @@ import {AppStoreModule} from './store/app-store.module';
     ReactiveFormsModule,
   ],
   providers: [
+    // Mock Services for test data
     {provide: AbstractAuthApiService, useClass: MockAuthApiService},
     {provide: AbstractRegisterApiService, useClass: MockRegisterApiService},
     {provide: AbstractResetApiService, useClass: MockResetApiService},

@@ -1,0 +1,21 @@
+<app-card *ngIf="(requestInformation$ | async) as requestInformation">
+  <img [src]="requestInformation.icon" alt="Isle of LAN" height="70">
+  <p>
+    {{requestInformation.description}}
+  </p>
+
+  <ng-container *ngIf="(sessionInformation$ | async) as sessionInformation">
+    <h2 class="continue">Continue as</h2>
+    <div class="session-user">
+      <div class="avatar">
+        <img [src]="sessionInformation.avatar" alt="">
+      </div>
+      <div class="user">
+        <h3 class="username">{{sessionInformation.username}}</h3>
+        <h4 class="email">{{sessionInformation.email}}</h4>
+      </div>
+    </div>
+    <a routerLink="/login" title="Login">Not you? Login with a different account.</a>
+    <button (click)="onContinue()" class="button button-primary">Continue</button>
+  </ng-container>
+</app-card>
