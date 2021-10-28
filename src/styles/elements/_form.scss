@@ -14,21 +14,74 @@
       color: $color-primary-light;
     }
   }
-  &-actions{
+
+  &-actions {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     gap: 1em;
   }
+
+  .city {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2em;
+
+    [type="number"] {
+      -moz-appearance: textfield;
+      appearance: none;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        margin: 0;
+        -webkit-appearance: none;
+      }
+    }
+  }
+
+  &-radio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+  }
 }
 
-input{
-  border: 2px solid $color-black;
-  border-radius: 0;
-  outline: none;
+.radio-button {
+  display: flex;
+
+  input {
+    display: none;
+
+    &:checked {
+      + .radio-button-value {
+        color: $color-white;
+        border-color: $color-primary-light;
+        background-color: $color-primary-light;
+      }
+    }
+  }
+
+  &-value {
+    font-weight: $font-weight-bold;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    padding: 1.4rem;
+    cursor: pointer;
+    border: 2px solid $color-black;
+  }
+}
+
+input {
+  font-weight: 400;
+  line-height: 1;
+  width: 100%;
 
   padding: 1rem 2.4rem;
   cursor: pointer;
-  font-weight: 400;
-  line-height: 1;
+  border: 2px solid $color-black;
+  border-radius: 0;
+  outline: none;
 }

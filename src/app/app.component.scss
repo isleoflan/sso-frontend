@@ -1,0 +1,14 @@
+:host {
+  display: grid;
+  min-height: 100vh;
+  grid-template: minmax(100px, 1fr) auto minmax(100px, 1fr) / auto minmax(300px, 500px) auto;
+
+  ::ng-deep {
+    > * {
+      position: relative;
+      grid-area: 2 / 2;
+    }
+  }
+}
+
+

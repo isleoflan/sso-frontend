@@ -37,22 +37,22 @@ body{
 }
 
 body{
-  display: grid;
-  height: 100vh;
-  width: 100vw;
   position: relative;
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
 
-  &::before{
-    content: "";
+  &::before {
     position: absolute;
-    width: 60vw;
-    height: 100vh;
-    left: -10vw;
-    background: linear-gradient(45deg, $color-primary-dark 50%, $color-primary-light 100%);
+    z-index: -1;
+    left: -50vw;
+    width: 100vw;
+    height: 100%;
+    content: "";
     @include shadow();
     transform: skew(-15deg);
     animation: show-bg 1s forwards cubic-bezier(0, 0, 0.25, 1);
-   // opacity: 0;
-    z-index: -1;
+    // opacity: 0;
+    background: linear-gradient(45deg, $color-primary-dark 50%, $color-primary-light 100%);
   }
 }
