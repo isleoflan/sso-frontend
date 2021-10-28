@@ -1,5 +1,5 @@
 import {createReducer, on} from '@ngrx/store';
-import {setGlobalSessionId, setLoginRequestId} from './auth.actions';
+import {setGlobalSessionId, setLoginRequestId, unsetGlobalSessionId} from './auth.actions';
 
 
 export const authFeatureKey = 'auth';
@@ -27,6 +27,12 @@ export const reducer = createReducer(
     return {
       ...state,
       globalSessionId
+    }
+  }),
+  on(unsetGlobalSessionId, (state: State) => {
+    return {
+      ...state,
+      globalSessionId: null
     }
   })
 );

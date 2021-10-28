@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authFacadeService.unsetGlobalSessionId();
+
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
@@ -38,9 +40,10 @@ export class LoginComponent implements OnInit {
         loginRequestId: '',
       }
       this.authFacadeService.loginWithUserCredentials(loginWithUserCredentialsDto).subscribe((payload) => {
-        this.router.navigate(['/redirect', {externalUrl: payload.data.redirect}], {
-          skipLocationChange: true
-        });
+        console.log('inNavigate');
+        /* this.router.navigate(['/redirect', {externalUrl: payload.data.redirect}], {
+            skipLocationChange: true
+          }); */
       });
     }
   }

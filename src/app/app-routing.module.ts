@@ -1,5 +1,6 @@
 import {InjectionToken, NgModule} from '@angular/core';
 import {ActivatedRouteSnapshot, RouterModule, Routes} from '@angular/router';
+import {CanLoadIfGlobalSessionIdIsSetGuard} from './guards/can-load-if-global-session-id-is-set.guard';
 import {CanLoadIfLoginRequestIdIsSetGuard} from './guards/can-load-if-login-request-id-is-set.guard';
 import {InitLoginComponent} from './init-login/init-login.component';
 import {RedirectComponent} from './redirect/redirect.component';
@@ -15,14 +16,14 @@ const routes: Routes = [
     ],
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
-  /*
   {
     path: 'continue',
     canLoad: [
-      CanLoadIfLoginRequestIdIsSetGuard
-    ]
+      CanLoadIfLoginRequestIdIsSetGuard,
+      CanLoadIfGlobalSessionIdIsSetGuard,
+    ],
+    loadChildren: () => import('./continue/continue.module').then(m => m.ContinueModule)
   },
-   */
   {
     path: 'reset-password',
     loadChildren: () => import('./reset-password/reset-password.module').then(m => m.ResetPasswordModule)

@@ -9,3 +9,7 @@ export const setGlobalSessionId = createAction(
   '[Auth] Set Global Session Id',
   props<{ globalSessionId: string | null }>()
 );
+
+export const unsetGlobalSessionId = createAction(
+  '[Auth] Unset Global Session Id'
+);

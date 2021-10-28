@@ -32,12 +32,16 @@ export class AuthFacadeService {
     this.store.dispatch({type: AuthStoreActions.setGlobalSessionId.type, globalSessionId});
   }
 
+  unsetGlobalSessionId(): void {
+    this.store.dispatch({type: AuthStoreActions.unsetGlobalSessionId.type});
+  }
+
   loginWithUserCredentials(loginWithUserCredentialsDto: LoginWithUserCredentialsDto): Observable<Payload<SessionRedirect>> {
     return this.authApiService.loginWithUserCredentials(loginWithUserCredentialsDto).pipe(
       tap((payload) => {
         const globalSessionId = payload.data.globalSessionId;
         this.store.dispatch({type: AuthStoreActions.setGlobalSessionId.type, globalSessionId})
       })
-    )
+    );
   }
 }

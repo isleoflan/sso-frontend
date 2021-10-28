@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-
 import * as faker from 'faker';
 import {Observable, of} from 'rxjs';
 import {environment} from '../../environments/environment';
@@ -48,7 +47,8 @@ export class MockAuthApiService implements AbstractAuthApiService {
   sessionInformation(sessionInformationDto: SessionInformationDto): Observable<Payload<SessionInformation>> {
     const data: SessionInformation = {
       avatar: faker.image.avatar(),
-      username: faker.internet.userName()
+      username: faker.internet.userName(),
+      email: faker.internet.email(),
     }
     return of({data} as Payload<SessionInformation>);
   }
