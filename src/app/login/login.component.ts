@@ -12,13 +12,12 @@ import {RequestInformationFacadeService} from '../store/request-information/requ
 })
 export class LoginComponent implements OnInit {
 
-  requestInformation$ = this.requestInformationFacadeService.requestInformation$({loginRequestId: 'asdfasdfasdf'});
+  requestInformation$ = this.requestInformationFacadeService.requestInformation$;
   loginForm: FormGroup = new FormGroup({});
 
 
   constructor(
     private requestInformationFacadeService: RequestInformationFacadeService,
-    //private authApiService: AbstractAuthApiService,
     private authFacadeService: AuthFacadeService,
     private router: Router
   ) {
@@ -40,10 +39,9 @@ export class LoginComponent implements OnInit {
         loginRequestId: '',
       }
       this.authFacadeService.loginWithUserCredentials(loginWithUserCredentialsDto).subscribe((payload) => {
-        console.log('inNavigate');
-        /* this.router.navigate(['/redirect', {externalUrl: payload.data.redirect}], {
-            skipLocationChange: true
-          }); */
+        this.router.navigate(['/redirect', {externalUrl: payload.data.redirect}], {
+          skipLocationChange: true
+        });
       });
     }
   }

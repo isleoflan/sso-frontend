@@ -3,9 +3,9 @@ import {Store} from '@ngrx/store';
 import {EMPTY, Observable, of} from 'rxjs';
 import {catchError, filter, finalize, share, startWith, switchMap, tap} from 'rxjs/operators';
 import {AbstractAuthApiService} from '../../api/abstract-auth-api.service';
-import {SessionInformationDto} from '../../interfaces/dto/session-information-dto';
 import {SessionInformation} from '../../interfaces/payload/session-information';
 import {AppState} from '../app.state';
+import {AuthStoreSelectors} from '../auth';
 import {FacadeService} from '../facade.service';
 import {SessionInformationStoreActions, SessionInformationStoreSelectors} from './index';
 
@@ -14,24 +14,13 @@ import {SessionInformationStoreActions, SessionInformationStoreSelectors} from '
 })
 export class SessionInformationFacadeService extends FacadeService {
 
-  constructor(
-    private store: Store<AppState>,
-    private authApiService: AbstractAuthApiService
-  ) {
-    super();
-  }
-
-  sessionInformation$ = (sessionInformationDto: SessionInformationDto): Observable<SessionInformation | null> => this.muteFirst(
-    this.requireSessionInformation$(sessionInformationDto).pipe(startWith(null)),
-    this.store.select(SessionInformationStoreSelectors.selectSessionInformation)
-  );
-
-  private requireSessionInformation$ = (sessionInformationDto: SessionInformationDto) =>
-    this.store.select(SessionInformationStoreSelectors.selectSessionInformationState).pipe(
+  private requireSessionInformation$ = this.store.select(AuthStoreSelectors.selectGlobalSessionId).pipe(
+    filter((globalSessionId) => globalSessionId !== null),
+    switchMap((globalSessionId) => this.store.select(SessionInformationStoreSelectors.selectSessionInformationState).pipe(
       finalize(() => this.store.dispatch({type: SessionInformationStoreActions.loadSessionInformationCancel.type})),
       filter(({isLoading, hasLoaded, error}) => !isLoading && !hasLoaded && error === null),
       tap(() => this.store.dispatch({type: SessionInformationStoreActions.loadSessionInformation.type})),
-      switchMap(() => this.authApiService.sessionInformation(sessionInformationDto).pipe(
+      switchMap(() => this.authApiService.sessionInformation({globalSessionId: globalSessionId!}).pipe(
         tap((payload) => this.store.dispatch({
           type: SessionInformationStoreActions.loadSessionInformationSuccess.type,
           payload
@@ -42,5 +31,20 @@ export class SessionInformationFacadeService extends FacadeService {
         })
       )),
       share()
-    );
+    ))
+  );
+
+  sessionInformation$: Observable<SessionInformation | null> = this.muteFirst(
+    this.requireSessionInformation$.pipe(startWith(null)),
+    this.store.select(SessionInformationStoreSelectors.selectSessionInformation)
+  );
+
+  constructor(
+    private store: Store<AppState>,
+    private authApiService: AbstractAuthApiService
+  ) {
+    super();
+  }
+
+
 }
