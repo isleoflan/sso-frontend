@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 
 import * as faker from 'faker';
 import {Observable, of} from 'rxjs';
+import {environment} from '../../environments/environment';
 import {ExecuteResetDto} from '../interfaces/dto/execute-reset-dto';
 import {RequestResetDto} from '../interfaces/dto/request-reset-dto';
 import {VerifyResetRequestDto} from '../interfaces/dto/verify-reset-request-dto';
@@ -16,8 +17,8 @@ export class MockResetApiService implements AbstractResetApiService {
 
   executeReset(executeResetDto: ExecuteResetDto): Observable<Payload<SessionRedirect>> {
     const data: SessionRedirect = {
-      session: faker.datatype.uuid(),
-      redirect: 'https://www.isleoflan.ch'
+      globalSessionId: faker.datatype.uuid(),
+      redirect: environment.fallbackUrl
     }
     return of({data} as Payload<SessionRedirect>);
   }

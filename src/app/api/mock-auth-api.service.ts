@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 
 import * as faker from 'faker';
 import {Observable, of} from 'rxjs';
+import {environment} from '../../environments/environment';
 import {LoginWithSessionIdDto} from '../interfaces/dto/login-with-session-id-dto';
 import {LoginWithUserCredentialsDto} from '../interfaces/dto/login-with-user-credentials-dto';
 import {RequestInformationDto} from '../interfaces/dto/request-information-dto';
@@ -20,15 +21,15 @@ export class MockAuthApiService implements AbstractAuthApiService {
 
   loginWithSessionId(loginWithSessionIdDto: LoginWithSessionIdDto): Observable<Payload<Redirect>> {
     const data: Redirect = {
-      redirect: 'https://www.isleoflan.ch'
+      redirect: environment.fallbackUrl
     }
     return of({data} as Payload<Redirect>);
   }
 
   loginWithUserCredentials(loginWithUserCredentialsDto: LoginWithUserCredentialsDto): Observable<Payload<SessionRedirect>> {
     const data: SessionRedirect = {
-      session: faker.datatype.uuid(),
-      redirect: 'https://www.isleoflan.ch'
+      globalSessionId: faker.datatype.uuid(),
+      redirect: environment.fallbackUrl
     }
     return of({data} as Payload<SessionRedirect>);
   }
@@ -37,8 +38,8 @@ export class MockAuthApiService implements AbstractAuthApiService {
     const data: RequestInformation = {
       id: faker.datatype.uuid(),
       title: faker.lorem.word(),
-      description: faker.lorem.paragraph(),
-      baseUrl: 'https://www.isleoflan.ch',
+      description: faker.lorem.sentences(3),
+      baseUrl: environment.fallbackUrl,
       icon: faker.image.avatar()
     }
     return of({data} as Payload<RequestInformation>);
