@@ -1,7 +1,7 @@
 :host {
   display: grid;
-  height: 100vh;
-  grid-template: 1fr auto 1fr / auto minmax(300px, 500px) auto;
+  min-height: 100vh;
+  grid-template: minmax(100px, 1fr) auto minmax(100px, 1fr) / auto minmax(300px, 500px) auto;
 
   ::ng-deep {
     > * {

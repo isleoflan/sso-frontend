@@ -3,6 +3,7 @@ import {ActivatedRouteSnapshot, RouterModule, Routes} from '@angular/router';
 import {CanLoadIfLoginRequestIdIsSetGuard} from './guards/can-load-if-login-request-id-is-set.guard';
 import {InitLoginComponent} from './init-login/init-login.component';
 import {RedirectComponent} from './redirect/redirect.component';
+import {RegisterComponent} from './register/register.component';
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
@@ -30,11 +31,11 @@ const routes: Routes = [
     path: 'set-password',
     loadChildren: () => import('./set-password/set-password.module').then(m => m.SetPasswordModule)
   },
-  /*
+
   {
-    path: 'create-account'
+    path: 'register',
+    component: RegisterComponent
   },
-   */
   {
     path: 'redirect',
     canActivate: [externalUrlProvider],

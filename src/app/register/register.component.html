@@ -1,0 +1,73 @@
+<app-card>
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="form">
+    <div class="form-control">
+      <label for="username">Username</label>
+      <input autocomplete="username" formControlName="username" id="username" type="text">
+    </div>
+    <div class="form-control">
+      <label for="password">Password</label>
+      <input autocomplete="new-password" formControlName="password" id="password" type="password">
+    </div>
+    <div class="form-control">
+      <label for="password-confirm">Confirm password</label>
+      <input autocomplete="new-password" formControlName="passwordConfirm" id="password-confirm" type="password">
+    </div>
+
+    <h2 class="form-title">Private informations</h2>
+    <div class="form-control">
+      <label>Gender</label>
+      <div class="form-radio">
+        <label class="radio-button">
+          <input formControlName="gender" name="gender" type="radio" value="{{MALE}}">
+          <span class="radio-button-value">{{MALE | titlecase}}</span>
+        </label>
+        <label class="radio-button">
+          <input formControlName="gender" name="gender" type="radio" value="{{FEMALE}}">
+          <span class="radio-button-value">{{FEMALE | titlecase}}</span>
+        </label>
+        <label class="radio-button">
+          <input formControlName="gender" name="gender" type="radio" value="{{OTHER}}">
+          <span class="radio-button-value">{{OTHER | titlecase}}</span>
+        </label>
+      </div>
+    </div>
+    <div class="form-control">
+      <label for="forename">Forename</label>
+      <input autocomplete="given-name" formControlName="forename" id="forename" type="text">
+    </div>
+    <div class="form-control">
+      <label for="lastname">Lastname</label>
+      <input autocomplete="family-name" formControlName="lastname" id="lastname" type="text">
+    </div>
+    <div class="form-control">
+      <label for="birthdate">Date of birth</label>
+      <input autocomplete="bday" formControlName="birthdate" id="birthdate" type="date">
+    </div>
+    <div class="form-control">
+      <label for="email">Mail</label>
+      <input autocomplete="email" formControlName="email" id="email" type="email">
+    </div>
+    <div class="form-control">
+      <label for="email">Mobile</label>
+      <input autocomplete="tel-national" formControlName="mobile" id="mobile" type="tel">
+    </div>
+
+    <h2 class="form-title">Address</h2>
+    <div class="form-control">
+      <label for="street">Street & Nr.</label>
+      <input autocomplete="street-address" formControlName="street" id="street" type="text">
+    </div>
+
+    <div class="form-control">
+      <label for="zip-code">ZIP & City</label>
+      <div class="city">
+        <input autocomplete="postal-code" formControlName="zipCode" id="zip-code" type="number">
+        <input autocomplete="country-name" formControlName="city" id="city" type="text">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button [disabled]="!registerForm.valid" class="button button-primary" type="submit">Register</button>
+    </div>
+  </form>
+</app-card>

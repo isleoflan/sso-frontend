@@ -18,13 +18,10 @@ export class InitLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     // set Login Request Id
     const loginRequestId = this.activatedRoute.snapshot.paramMap.get('loginRequestId');
     this.authFacadeService.setLoginRequestId(loginRequestId);
-
-    // set global Session Id
-    const globalSessionId = localStorage.getItem('iol-global-session-id');
-    this.authFacadeService.setGlobalSessionId(globalSessionId);
 
     // check auth and redirect to specific location
     this.authFacadeService.authState$.subscribe((state) => {
