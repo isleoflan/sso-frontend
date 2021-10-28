@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {tap} from 'rxjs/operators';
-import {AbstractAuthApiService} from '../api/abstract-auth-api.service';
 import {LoginWithUserCredentialsDto} from '../interfaces/dto/login-with-user-credentials-dto';
+import {AuthFacadeService} from '../store/auth/auth-facade.service';
 import {RequestInformationFacadeService} from '../store/request-information/request-information-facade.service';
 
 @Component({
@@ -19,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private requestInformationFacadeService: RequestInformationFacadeService,
-    private authApiService: AbstractAuthApiService,
+    //private authApiService: AbstractAuthApiService,
+    private authFacadeService: AuthFacadeService,
     private router: Router
   ) {
   }
@@ -37,13 +37,11 @@ export class LoginComponent implements OnInit {
         ...this.loginForm.value,
         loginRequestId: '',
       }
-      this.authApiService.loginWithUserCredentials(loginWithUserCredentialsDto).pipe(
-        tap((payload) => {
-          this.router.navigate(['/redirect', {externalUrl: payload.data.redirect}], {
-            skipLocationChange: true
-          });
-        })
-      ).subscribe()
+      this.authFacadeService.loginWithUserCredentials(loginWithUserCredentialsDto).subscribe((payload) => {
+        this.router.navigate(['/redirect', {externalUrl: payload.data.redirect}], {
+          skipLocationChange: true
+        });
+      });
     }
   }
 

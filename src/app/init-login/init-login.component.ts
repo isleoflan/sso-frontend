@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 import {AuthFacadeService} from '../store/auth/auth-facade.service';
 
 @Component({
@@ -32,7 +33,7 @@ export class InitLoginComponent implements OnInit {
       } else if (state.loginRequestId) {
         this.router.navigate(['/login']);
       } else {
-        this.router.navigate(['/redirect', {redirectUrl: 'https://isleoflan.ch'}]);
+        this.router.navigate(['/redirect', {redirectUrl: environment.fallbackUrl}]);
       }
     })
   }

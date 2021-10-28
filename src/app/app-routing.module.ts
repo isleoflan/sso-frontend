@@ -7,7 +7,6 @@ import {RedirectComponent} from './redirect/redirect.component';
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
 const routes: Routes = [
-
   {
     path: 'login',
     canLoad: [
@@ -50,7 +49,6 @@ const routes: Routes = [
     path: '**',
     component: RedirectComponent
   },
-
 ];
 
 @NgModule({

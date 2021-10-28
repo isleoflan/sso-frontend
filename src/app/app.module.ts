@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {EffectsModule} from '@ngrx/effects';
 import {AbstractAuthApiService} from './api/abstract-auth-api.service';
 import {AbstractRegisterApiService} from './api/abstract-register-api.service';
 import {AbstractResetApiService} from './api/abstract-reset-api.service';
@@ -25,6 +26,7 @@ import {AppStoreModule} from './store/app-store.module';
     AppRoutingModule,
     AppStoreModule,
     CardModule,
+    EffectsModule.forRoot([]),
   ],
   providers: [
     {provide: AbstractAuthApiService, useClass: MockAuthApiService},

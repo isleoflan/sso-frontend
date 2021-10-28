@@ -1,5 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
+import {AbstractAuthApiService} from '../../api/abstract-auth-api.service';
+import {LoginWithUserCredentialsDto} from '../../interfaces/dto/login-with-user-credentials-dto';
+import {Payload} from '../../interfaces/payload';
+import {SessionRedirect} from '../../interfaces/payload/session-redirect';
 import {AppState} from '../app.state';
 import {AuthStoreActions, AuthStoreSelectors} from './index';
 
@@ -13,7 +19,8 @@ export class AuthFacadeService {
   globalSessionId$ = this.store.select(AuthStoreSelectors.selectGlobalSessionId);
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private authApiService: AbstractAuthApiService
   ) {
   }
 
@@ -23,5 +30,14 @@ export class AuthFacadeService {
 
   setGlobalSessionId(globalSessionId: string | null): void {
     this.store.dispatch({type: AuthStoreActions.setGlobalSessionId.type, globalSessionId});
+  }
+
+  loginWithUserCredentials(loginWithUserCredentialsDto: LoginWithUserCredentialsDto): Observable<Payload<SessionRedirect>> {
+    return this.authApiService.loginWithUserCredentials(loginWithUserCredentialsDto).pipe(
+      tap((payload) => {
+        const globalSessionId = payload.data.globalSessionId;
+        this.store.dispatch({type: AuthStoreActions.setGlobalSessionId.type, globalSessionId})
+      })
+    )
   }
 }
