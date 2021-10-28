@@ -14,15 +14,15 @@ export class RegisterComponent implements OnInit {
   OTHER = Gender.OTHER;
 
   registerForm: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required], [this.customValidatorService.checkForExistingUsername]),
     password: new FormControl('', [Validators.required]),
     passwordConfirm: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
     forename: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
     birthdate: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    mobile: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email], [this.customValidatorService.checkForExistingEmail]),
+    mobile: new FormControl('', [Validators.required, this.customValidatorService.phoneNumber]),
     address: new FormControl('', [Validators.required]),
     zipCode: new FormControl('', [Validators.required, Validators.min(1000), Validators.max(9999)]),
     city: new FormControl('', [Validators.required])
