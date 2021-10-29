@@ -1,7 +1,7 @@
 import {Gender} from '../enum/gender';
 
 export interface RegisterNewAccountDto {
-  loginRequestId: string;
+  loginRequestId: string | null;
 
   username: string;
   password: string;
@@ -11,8 +11,11 @@ export interface RegisterNewAccountDto {
   lastname: string;
 
   address: string;
-  zipCode: string;
+  zipCode: number;
   city: string;
 
-  birthDate: string;
+  birthDate: Date;
+
+  email: string;
+  phone: string;
 }

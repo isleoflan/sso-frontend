@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {RequestInformationFacadeService} from '../../store/request-information/request-information-facade.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -9,8 +10,12 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class ResetPasswordComponent implements OnInit {
 
   resetPasswordForm: FormGroup = new FormGroup({});
+  requestInformation$ = this.requestInformationFacadeService.requestInformation$;
 
-  constructor() { }
+  constructor(
+    private requestInformationFacadeService: RequestInformationFacadeService,
+  ) {
+  }
 
   ngOnInit(): void {
 
@@ -19,7 +24,7 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
 
   }
 

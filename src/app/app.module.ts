@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {EffectsModule} from '@ngrx/effects';
 import {AbstractAuthApiService} from './api/abstract-auth-api.service';
@@ -12,10 +11,9 @@ import {MockResetApiService} from './api/mock-reset-api.service';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {InitLoginComponent} from './init-login/init-login.component';
+import {InitLoginComponent} from './components/init-login/init-login.component';
+import {RedirectComponent} from './components/redirect/redirect.component';
 import {CardModule} from './layout/card/card.module';
-import {RedirectComponent} from './redirect/redirect.component';
-import {RegisterComponent} from './register/register.component';
 import {AppStoreModule} from './store/app-store.module';
 
 @NgModule({
@@ -23,7 +21,6 @@ import {AppStoreModule} from './store/app-store.module';
     AppComponent,
     RedirectComponent,
     InitLoginComponent,
-    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +28,6 @@ import {AppStoreModule} from './store/app-store.module';
     AppStoreModule,
     CardModule,
     EffectsModule.forRoot([]),
-    ReactiveFormsModule,
   ],
   providers: [
     // Mock Services for test data

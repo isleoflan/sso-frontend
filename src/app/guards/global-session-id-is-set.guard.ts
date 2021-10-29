@@ -4,8 +4,10 @@ import {
   CanActivateChild,
   CanLoad,
   Route,
+  Router,
   RouterStateSnapshot,
-  UrlSegment
+  UrlSegment,
+  UrlTree
 } from '@angular/router';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -21,16 +23,33 @@ export class GlobalSessionIdIsSetGuard implements CanLoad, CanActivateChild {
   );
 
   constructor(
-    private authFacadeService: AuthFacadeService
+    private authFacadeService: AuthFacadeService,
+    private router: Router
   ) {
   }
 
-  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> {
-    return this.isGlobalSessionIdSet$;
+  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> {
+    return this.isGlobalSessionIdSet$.pipe(
+      map((state) => {
+        if (state) {
+          return state;
+        } else {
+          return this.router.createUrlTree(['/login']);
+        }
+      })
+    );
   }
 
-  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.isGlobalSessionIdSet$;
+  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+    return this.isGlobalSessionIdSet$.pipe(
+      map((state) => {
+        if (state) {
+          return state;
+        } else {
+          return this.router.createUrlTree(['/login']);
+        }
+      })
+    );
   }
 
 }

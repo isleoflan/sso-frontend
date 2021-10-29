@@ -2,10 +2,10 @@ import {Component, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {LoginWithSessionIdDto} from '../interfaces/dto/login-with-session-id-dto';
-import {AuthFacadeService} from '../store/auth/auth-facade.service';
-import {RequestInformationFacadeService} from '../store/request-information/request-information-facade.service';
-import {SessionInformationFacadeService} from '../store/session-information/session-information-facade.service';
+import {LoginWithSessionIdDto} from '../../interfaces/dto/login-with-session-id-dto';
+import {AuthFacadeService} from '../../store/auth/auth-facade.service';
+import {RequestInformationFacadeService} from '../../store/request-information/request-information-facade.service';
+import {SessionInformationFacadeService} from '../../store/session-information/session-information-facade.service';
 
 @Component({
   selector: 'app-continue',

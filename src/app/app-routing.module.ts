@@ -1,23 +1,28 @@
 import {InjectionToken, NgModule} from '@angular/core';
 import {ActivatedRouteSnapshot, RouterModule, Routes} from '@angular/router';
+import {InitLoginComponent} from './components/init-login/init-login.component';
+import {RedirectComponent} from './components/redirect/redirect.component';
 import {GlobalSessionIdIsSetGuard} from './guards/global-session-id-is-set.guard';
 import {LoginRequestIdIsSetGuard} from './guards/login-request-id-is-set.guard';
-import {InitLoginComponent} from './init-login/init-login.component';
-import {RedirectComponent} from './redirect/redirect.component';
-import {RegisterComponent} from './register/register.component';
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
 const routes: Routes = [
   {
     path: 'login',
-    canLoad: [
-      LoginRequestIdIsSetGuard
-    ],
-    canActivateChild: [
-      LoginRequestIdIsSetGuard
-    ],
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+    loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./components/register/register.module').then(m => m.RegisterModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./components/reset-password/reset-password.module').then(m => m.ResetPasswordModule)
+  },
+  {
+    path: 'set-password',
+    loadChildren: () => import('./components/set-password/set-password.module').then(m => m.SetPasswordModule)
   },
   {
     path: 'continue',
@@ -29,34 +34,20 @@ const routes: Routes = [
       LoginRequestIdIsSetGuard,
       GlobalSessionIdIsSetGuard,
     ],
-    loadChildren: () => import('./continue/continue.module').then(m => m.ContinueModule)
-  },
-  {
-    path: 'reset-password',
-    loadChildren: () => import('./reset-password/reset-password.module').then(m => m.ResetPasswordModule)
-  },
-  {
-    path: 'set-password',
-    loadChildren: () => import('./set-password/set-password.module').then(m => m.SetPasswordModule)
-  },
-
-  {
-    path: 'register',
-    component: RegisterComponent
+    loadChildren: () => import('./components/continue/continue.module').then(m => m.ContinueModule)
   },
   {
     path: 'redirect',
     canActivate: [externalUrlProvider],
     component: RedirectComponent
   },
-
   {
-    path: ':loginRequestId',
+    path: 'request/:loginRequestId',
     component: InitLoginComponent,
   },
   {
     path: '**',
-    component: RedirectComponent
+    redirectTo: 'login'
   },
 ];
 
