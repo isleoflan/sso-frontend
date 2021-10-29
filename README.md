@@ -8,7 +8,6 @@ to the different IOL Applications.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
 
-
 ## Development
 
 Things that have to be installed on your development environment.
