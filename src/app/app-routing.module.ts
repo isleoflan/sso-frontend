@@ -4,7 +4,6 @@ import {GlobalSessionIdIsSetGuard} from './guards/global-session-id-is-set.guard
 import {LoginRequestIdIsSetGuard} from './guards/login-request-id-is-set.guard';
 import {InitLoginComponent} from './init-login/init-login.component';
 import {RedirectComponent} from './redirect/redirect.component';
-import {RegisterComponent} from './register/register.component';
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
@@ -42,7 +41,7 @@ const routes: Routes = [
 
   {
     path: 'register',
-    component: RegisterComponent
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
   },
   {
     path: 'redirect',
