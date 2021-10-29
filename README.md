@@ -8,7 +8,6 @@ to the different IOL Applications.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
 
-# Prerequisites / Dependencies
 
 ## Development
 
@@ -46,11 +45,11 @@ providers: [
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change
 any of the source files.
 
-# Frontend
+## Frontend
 
 The frontend consists of seven pages. The table below shows the available routes and their purpose.
 
-## Accessible Routes
+### Accessible Routes
 
 | Route                         | LRID     | GSID     | Hash | Description                                                                    |
 | ----------------------------- | -------- | -------- | ---- | ------------------------------------------------------------------------------ |
