@@ -25,7 +25,7 @@ Things that have to be installed on your development environment.
 ### API Mocking
 
 For development purposes, every API Endpoint is mocked. To enable the mocking API, add the following code to the
-provider section of the app.module.ts
+provider section of the app.module.ts.
 
 ```ts
 import {MockAuthApiService} from './api/mock-auth-api.service';
