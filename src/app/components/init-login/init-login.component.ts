@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {environment} from '../../environments/environment';
-import {AuthFacadeService} from '../store/auth/auth-facade.service';
+import {environment} from '../../../environments/environment';
+import {AuthFacadeService} from '../../store/auth/auth-facade.service';
 
 @Component({
   selector: 'app-init-login',

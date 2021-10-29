@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AbstractRegisterApiService} from '../api/abstract-register-api.service';
-import {RegisterNewAccountDto} from '../interfaces/dto/register-new-account-dto';
-import {Gender} from '../interfaces/enum/gender';
-import {CustomValidatorService} from '../services/custom-validator.service';
-import {AuthFacadeService} from '../store/auth/auth-facade.service';
+import {AbstractRegisterApiService} from '../../api/abstract-register-api.service';
+import {RegisterNewAccountDto} from '../../interfaces/dto/register-new-account-dto';
+import {Gender} from '../../interfaces/enum/gender';
+import {CustomValidatorService} from '../../services/custom-validator.service';
+import {AuthFacadeService} from '../../store/auth/auth-facade.service';
 
 @Component({
   selector: 'app-register',

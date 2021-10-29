@@ -11,9 +11,9 @@ import {MockResetApiService} from './api/mock-reset-api.service';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {InitLoginComponent} from './init-login/init-login.component';
+import {InitLoginComponent} from './components/init-login/init-login.component';
+import {RedirectComponent} from './components/redirect/redirect.component';
 import {CardModule} from './layout/card/card.module';
-import {RedirectComponent} from './redirect/redirect.component';
 import {AppStoreModule} from './store/app-store.module';
 
 @NgModule({

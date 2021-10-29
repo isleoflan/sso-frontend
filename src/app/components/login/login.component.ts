@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {LoginWithUserCredentialsDto} from '../interfaces/dto/login-with-user-credentials-dto';
-import {AuthFacadeService} from '../store/auth/auth-facade.service';
-import {RequestInformationFacadeService} from '../store/request-information/request-information-facade.service';
+import {LoginWithUserCredentialsDto} from '../../interfaces/dto/login-with-user-credentials-dto';
+import {AuthFacadeService} from '../../store/auth/auth-facade.service';
+import {RequestInformationFacadeService} from '../../store/request-information/request-information-facade.service';
 
 @Component({
   selector: 'app-login',
