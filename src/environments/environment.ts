@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  fallbackUrl: 'https://isleoflan.ch'
+  fallbackUrl: 'https://isleoflan.ch',
+
+  apiUrl: 'https://api.sso.isleoflan.ch/v1'
 };
 
 /*

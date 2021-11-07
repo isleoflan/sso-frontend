@@ -1,5 +1,6 @@
 <app-card *ngIf="(requestInformation$ | async) as requestInformation">
   <img [src]="requestInformation.icon" alt="Isle of LAN" height="70">
+  <h1>{{requestInformation.title}}</h1>
   <p>
     {{requestInformation.description}}
   </p>

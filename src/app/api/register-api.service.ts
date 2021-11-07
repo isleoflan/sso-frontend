@@ -21,19 +21,19 @@ export class RegisterApiService implements AbstractRegisterApiService {
   }
 
   checkEmail(checkEmailDto: CheckEmailDto): Observable<Payload<Availability>> {
-    return this.http.get<Payload<Availability>>('/v1/register/check/email', {params: {...checkEmailDto}}).pipe(first());
+    return this.http.get<Payload<Availability>>('/register/check/email', {params: {...checkEmailDto}}).pipe(first());
   }
 
   checkUsername(checkUsernameDto: CheckUsernameDto): Observable<Payload<Availability>> {
-    return this.http.get<Payload<Availability>>('/v1/register/check/username', {params: {...checkUsernameDto}}).pipe(first());
+    return this.http.get<Payload<Availability>>('/register/check/username', {params: {...checkUsernameDto}}).pipe(first());
   }
 
   registerNewAccount(registerNewAccountDto: RegisterNewAccountDto): Observable<Payload<null>> {
-    return this.http.post<Payload<null>>('/v1/register/new', {registerNewAccountDto}).pipe(first());
+    return this.http.post<Payload<null>>('/register/new', {registerNewAccountDto}).pipe(first());
   }
 
   verifyEmail(verifyEmailDDto: VerifyEmailDto): Observable<Payload<null>> {
-    return this.http.patch<Payload<null>>('/v1/register/verify/email', {verifyEmailDDto}).pipe(first());
+    return this.http.patch<Payload<null>>('/register/verify/email', {verifyEmailDDto}).pipe(first());
   }
 
 }
