@@ -44,6 +44,21 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1em;
   }
+
+  &-errors {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: $color-primary-accent;
+    grid-template-columns: 1fr;
+    gap: 0.5em;
+  }
+
+  &-error {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .radio-button {

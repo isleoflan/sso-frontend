@@ -1,11 +1,18 @@
 <app-card *ngIf="(requestInformation$ | async) as requestInformation">
-  <img [src]="requestInformation.icon" alt="Isle of LAN" height="70">
+  <img *ngIf="requestInformation.icon" [src]="requestInformation.icon" alt="Isle of LAN" height="70">
   <h1>{{requestInformation.title}}</h1>
   <p>
     {{requestInformation.description}}
   </p>
 
   <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <ng-container *ngIf="(apiErrors$ | async) as errors">
+      <ul *ngIf="errors.length" class="form-errors">
+        <li *ngFor="let error of errors">
+          {{error.message}}
+        </li>
+      </ul>
+    </ng-container>
     <div class="form-control">
       <label for="username">Username</label>
       <input type="text" id="username" formControlName="username" autocomplete="username">

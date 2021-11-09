@@ -67,7 +67,8 @@ export class RegisterComponent implements OnInit {
         email: values.email,
         phone: values.phone
       }
-      this.registerApiService.registerNewAccount(registerNewAccountDto).pipe().subscribe();
+      this.registerApiService.registerNewAccount(registerNewAccountDto).pipe().subscribe(() => {
+      });
     });
   }
 }
