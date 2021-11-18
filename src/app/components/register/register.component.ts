@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {first, tap} from 'rxjs/operators';
 import {AbstractRegisterApiService} from '../../api/abstract-register-api.service';
 import {RegisterNewAccountDto} from '../../interfaces/dto/register-new-account-dto';
 import {Gender} from '../../interfaces/enum/gender';
@@ -35,6 +37,7 @@ export class RegisterComponent implements OnInit {
     private customValidatorService: CustomValidatorService,
     private authFacadeService: AuthFacadeService,
     private registerApiService: AbstractRegisterApiService,
+    private router: Router
   ) {
   }
 
@@ -67,8 +70,10 @@ export class RegisterComponent implements OnInit {
         email: values.email,
         phone: values.phone
       }
-      this.registerApiService.registerNewAccount(registerNewAccountDto).pipe().subscribe(() => {
-      });
+      this.registerApiService.registerNewAccount(registerNewAccountDto).pipe(
+        first(),
+        tap(() => this.router.navigate(['success'])),
+      ).subscribe();
     });
   }
 }

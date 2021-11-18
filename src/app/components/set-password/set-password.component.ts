@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {first, tap} from 'rxjs/operators';
+import {AbstractResetApiService} from '../../api/abstract-reset-api.service';
+import {ExecuteResetDto} from '../../interfaces/dto/execute-reset-dto';
 
 @Component({
   selector: 'app-set-password',
@@ -10,18 +14,28 @@ export class SetPasswordComponent implements OnInit {
 
   setPasswordForm: FormGroup = new FormGroup({});
 
-  constructor() { }
+  constructor(
+    private resetApiService: AbstractResetApiService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
-
     this.setPasswordForm = new FormGroup({
       password: new FormControl('', [Validators.required]),
       passwordConfirm: new FormControl('', [Validators.required]),
     });
   }
 
-  onSubmit(): void{
-
+  onSubmit(): void {
+    const executeResetDto: ExecuteResetDto = {
+      resetId: 'asdf', // ToDo: to be defined
+      password: this.setPasswordForm.value.password,
+    }
+    this.resetApiService.executeReset(executeResetDto).pipe(
+      first(),
+      tap(() => this.router.navigate(['success'])),
+    ).subscribe();
   }
 
 }

@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {first, tap} from 'rxjs/operators';
+import {AbstractResetApiService} from '../../api/abstract-reset-api.service';
+import {RequestResetDto} from '../../interfaces/dto/request-reset-dto';
+import {AuthFacadeService} from '../../store/auth/auth-facade.service';
 import {RequestInformationFacadeService} from '../../store/request-information/request-information-facade.service';
 
 @Component({
@@ -14,6 +19,9 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(
     private requestInformationFacadeService: RequestInformationFacadeService,
+    private resetApiService: AbstractResetApiService,
+    private authFacadeService: AuthFacadeService,
+    private router: Router
   ) {
   }
 
@@ -25,7 +33,18 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+    if (this.resetPasswordForm.valid) {
+      this.authFacadeService.loginRequestId$.subscribe((loginRequestId) => {
+        const requestResetDto: RequestResetDto = {
+          ...this.resetPasswordForm.value,
+          loginRequestId,
+        };
+        this.resetApiService.requestReset(requestResetDto).pipe(
+          first(),
+          tap(() => this.router.navigate(['success'])),
+        ).subscribe();
+      });
+    }
   }
 
 }

@@ -39,21 +39,23 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const loginWithUserCredentialsDto: LoginWithUserCredentialsDto = {
-        ...this.loginForm.value,
-        loginRequestId: '',
-      }
-      this.authFacadeService.loginWithUserCredentials(loginWithUserCredentialsDto).pipe(
-        tap((payload) => {
-          this.router.navigate(['/redirect', {externalUrl: payload.data.redirect}], {
-            skipLocationChange: true
-          });
-        }),
-        catchError((error) => {
-          this.apiErrors$.next(error.error.errors);
-          return of(EMPTY);
-        })
-      ).subscribe();
+      this.authFacadeService.loginRequestId$.subscribe((loginRequestId) => {
+        const loginWithUserCredentialsDto: LoginWithUserCredentialsDto = {
+          ...this.loginForm.value,
+          loginRequestId,
+        }
+        this.authFacadeService.loginWithUserCredentials(loginWithUserCredentialsDto).pipe(
+          tap((payload) => {
+            this.router.navigate(['/redirect', {externalUrl: payload.data.redirect}], {
+              skipLocationChange: true
+            });
+          }),
+          catchError((error) => {
+            this.apiErrors$.next(error.error.errors);
+            return of(EMPTY);
+          })
+        ).subscribe();
+      })
     }
   }
 

@@ -5,11 +5,13 @@ import {CardModule} from '../../layout/card/card.module';
 
 import {RegisterRoutingModule} from './register-routing.module';
 import {RegisterComponent} from './register.component';
+import {SuccessComponent} from './success/success.component';
 
 
 @NgModule({
   declarations: [
-    RegisterComponent
+    RegisterComponent,
+    SuccessComponent,
   ],
   imports: [
     CommonModule,

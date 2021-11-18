@@ -4,11 +4,13 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CardModule} from '../../layout/card/card.module';
 import {SetPasswordRoutingModule} from './set-password-routing.module';
 import {SetPasswordComponent} from './set-password.component';
+import {SuccessComponent} from './success/success.component';
 
 
 @NgModule({
   declarations: [
-    SetPasswordComponent
+    SetPasswordComponent,
+    SuccessComponent
   ],
   imports: [
     CommonModule,
