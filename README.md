@@ -28,14 +28,38 @@ For development purposes, every API Endpoint is mocked. To enable the mocking AP
 provider section of the app.module.ts.
 
 ```ts
+import {AbstractAuthApiService} from './api/abstract-auth-api.service';
+import {AbstractRegisterApiService} from './api/abstract-register-api.service';
+import {AbstractResetApiService} from './api/abstract-reset-api.service';
+
 import {MockAuthApiService} from './api/mock-auth-api.service';
 import {MockRegisterApiService} from './api/mock-register-api.service';
 import {MockResetApiService} from './api/mock-reset-api.service';
 
 providers: [
+  // ...
   {provide: AbstractAuthApiService, useClass: MockAuthApiService},
   {provide: AbstractRegisterApiService, useClass: MockRegisterApiService},
   {provide: AbstractResetApiService, useClass: MockResetApiService},
+]
+```
+
+To be complete, here are the live ApiServices:
+
+```ts
+import {AbstractAuthApiService} from './api/abstract-auth-api.service';
+import {AbstractRegisterApiService} from './api/abstract-register-api.service';
+import {AbstractResetApiService} from './api/abstract-reset-api.service';
+
+import {AuthApiService} from './api/auth-api.service';
+import {RegisterApiService} from './api/register-api.service';
+import {ResetApiService} from './api/reset-api.service';
+
+providers: [
+  // ...
+  {provide: AbstractAuthApiService, useClass: AuthApiService},
+  {provide: AbstractRegisterApiService, useClass: RegisterApiService},
+  {provide: AbstractResetApiService, useClass: ResetApiService},
 ]
 ```
 

@@ -40,4 +40,5 @@ import {AppStoreModule} from './store/app-store.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
