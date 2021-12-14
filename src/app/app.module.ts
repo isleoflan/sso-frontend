@@ -17,12 +17,14 @@ import {RedirectComponent} from './components/redirect/redirect.component';
 import {httpInterceptorProviders} from './interceptors';
 import {CardModule} from './layout/card/card.module';
 import {AppStoreModule} from './store/app-store.module';
+import {DoubleOptInComponent} from './components/double-opt-in/double-opt-in.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RedirectComponent,
     InitLoginComponent,
+    DoubleOptInComponent,
   ],
   imports: [
     BrowserModule,

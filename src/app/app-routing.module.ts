@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/register/register.module').then(m => m.RegisterModule)
   },
   {
+    path: 'doi',
+    loadChildren: () => import('./components/double-opt-in/double-opt-in.module').then(m => m.DoubleOptInModule),
+  },
+  {
     path: 'reset-password',
     loadChildren: () => import('./components/reset-password/reset-password.module').then(m => m.ResetPasswordModule)
   },

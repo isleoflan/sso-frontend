@@ -80,9 +80,11 @@ The frontend consists of seven pages. The table below shows the available routes
 | /login                        | no / yes | no       | no   | no      | Show the login form. If LRID is set, show Appiacation informations             |
 | /register                     | no / yes | no       | no   | no      | Show the register form.                                                        |
 | /register/success             | no       | no       | no   | yes     | Register success page, referer has to be `/register`                           |
+| /doi/verify/:hash             | no       | no       | yes  | no      | Show the DOI Button                                                            |
+| /doi/success                  | no       | no       | no   | yes     | DOI success page, referer has to be `/doi/verify/*`                            |
 | /reset-password               | no / yes | no       | no   | no      | Show the password reset form                                                   |
 | /reset-password/success       | no       | no       | no   | yes     | Reset password success page, referer has to be `/reset-password`               |
-| /set-password                 | no       | no       | yes  | no      | Show the password set form                                                     |
+| /set-password/:hash           | no       | no       | yes  | no      | Show the password set form                                                     |
 | /set-password/success         | no       | no       | no   | yes     | Set new password success Page, referer has to be `/set-password`               |
 | /continue                     | yes      | yes      | no   | no      | Show information about the application and the currently logged in user. Display button to continue to the requested site. |
 | /logout                       | no       | yes      | no   | no      | Logs the current user out. (Removes the GSID)                                  |
