@@ -9,6 +9,7 @@ import {VerifyEmailDto} from '../interfaces/dto/verify-email-dto';
 import {Payload} from '../interfaces/payload';
 import {Availability} from '../interfaces/payload/availability';
 import {AbstractRegisterApiService} from './abstract-register-api.service';
+import {SessionRedirect} from "../interfaces/payload/session-redirect";
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +33,8 @@ export class RegisterApiService implements AbstractRegisterApiService {
     return this.http.post<Payload<null>>('/register/new', {...registerNewAccountDto}).pipe(first());
   }
 
-  verifyEmail(verifyEmailDDto: VerifyEmailDto): Observable<Payload<null>> {
-    return this.http.patch<Payload<null>>('/register/verify/email', {...verifyEmailDDto}).pipe(first());
+  verifyEmail(verifyEmailDDto: VerifyEmailDto): Observable<Payload<SessionRedirect>> {
+    return this.http.patch<Payload<SessionRedirect>>('/register/verify/email', {...verifyEmailDDto}).pipe(first());
   }
 
 }

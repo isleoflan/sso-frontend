@@ -1,0 +1,62 @@
+@use "elements/button";
+
+@keyframes blink1 {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  41% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes blink2 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  51% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes blink3 {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  61% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.dot {
+  opacity: 0;
+}
+
+.dot-1 {
+  animation: blink1 1.2s linear infinite;
+}
+
+.dot-2 {
+  animation: blink2 1.2s linear infinite;
+}
+
+.dot-3 {
+  animation: blink3 1.2s linear infinite;
+}
