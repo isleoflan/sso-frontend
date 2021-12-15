@@ -28,7 +28,7 @@ export class VerifyComponent implements OnInit {
         // set Login Request Id
         this.authFacadeService.setGlobalSessionId(data.globalSessionId);
       }),
-      tap(({data}) => this.router.navigate(['success', btoa(data.redirect)], {relativeTo: this.activatedRoute})),
+      tap(({data}) => this.router.navigate(['/doi/success', btoa(data.redirect)], {relativeTo: this.activatedRoute})),
       catchError(() => {
         return of(EMPTY);
       })
