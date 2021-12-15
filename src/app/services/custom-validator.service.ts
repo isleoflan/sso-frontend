@@ -37,8 +37,8 @@ export class CustomValidatorService {
             return null;
           }
         } catch (e) {
+          return {wrongPhoneNumberFormat: true} as ValidationErrors;
         }
-        return {wrongPhoneNumberFormat: true} as ValidationErrors;
       }
       return null;
     };

@@ -99,4 +99,10 @@ input {
   border: 2px solid $color-black;
   border-radius: 0;
   outline: none;
+
+  &.ng-dirty {
+    &.ng-invalid {
+      border-color: $color-primary-accent;
+    }
+  }
 }

@@ -36,7 +36,6 @@ export class AuthApiService implements AbstractAuthApiService {
   }
 
   sessionInformation(sessionInformationDto: SessionInformationDto): Observable<Payload<SessionInformation>> {
-    return this.http.get<Payload<SessionInformation>>('/auth/request/session', {params: {...sessionInformationDto}}).pipe(first());
+    return this.http.get<Payload<SessionInformation>>('/auth/session/info', {params: {...sessionInformationDto}}).pipe(first());
   }
-
 }

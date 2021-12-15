@@ -29,11 +29,11 @@ export class RegisterApiService implements AbstractRegisterApiService {
   }
 
   registerNewAccount(registerNewAccountDto: RegisterNewAccountDto): Observable<Payload<null>> {
-    return this.http.post<Payload<null>>('/register/new', {registerNewAccountDto}).pipe(first());
+    return this.http.post<Payload<null>>('/register/new', {...registerNewAccountDto}).pipe(first());
   }
 
   verifyEmail(verifyEmailDDto: VerifyEmailDto): Observable<Payload<null>> {
-    return this.http.patch<Payload<null>>('/register/verify/email', {verifyEmailDDto}).pipe(first());
+    return this.http.patch<Payload<null>>('/register/verify/email', {...verifyEmailDDto}).pipe(first());
   }
 
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {first, tap} from 'rxjs/operators';
 import {AbstractResetApiService} from '../../api/abstract-reset-api.service';
 import {ExecuteResetDto} from '../../interfaces/dto/execute-reset-dto';
@@ -16,6 +16,7 @@ export class SetPasswordComponent implements OnInit {
 
   constructor(
     private resetApiService: AbstractResetApiService,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
   }
@@ -34,7 +35,7 @@ export class SetPasswordComponent implements OnInit {
     }
     this.resetApiService.executeReset(executeResetDto).pipe(
       first(),
-      tap(() => this.router.navigate(['success'])),
+      tap(() => this.router.navigate(['success'], {relativeTo: this.activatedRoute})),
     ).subscribe();
   }
 
