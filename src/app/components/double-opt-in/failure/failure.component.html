@@ -1,0 +1,13 @@
+<app-card>
+  <h1>We encountered an error...</h1>
+  <article>
+    <p>It could be many things:<br> Maybe your mouse movements are to slow or you ping is too high.</p>
+    <p>We have logged the problem, and will investigate it.<br><em>(I hope the log-service is functional and
+      implemented)</em></p>
+    <p>I think / hope a developer will take care of the Issue in the Future. But between us: Try it again later.</p>
+  </article>
+  <div class="button-group">
+    <button class="button button-secondary">Do nothing.</button>
+    <a [routerLink]="['/login']" class="button button-primary" title="Login">Try Again</a>
+  </div>
+</app-card>
