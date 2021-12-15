@@ -26,3 +26,9 @@
     opacity: 0.5;
   }
 }
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}

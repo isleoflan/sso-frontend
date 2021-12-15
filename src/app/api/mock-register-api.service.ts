@@ -7,6 +7,9 @@ import {VerifyEmailDto} from '../interfaces/dto/verify-email-dto';
 import {Payload} from '../interfaces/payload';
 import {Availability} from '../interfaces/payload/availability';
 import {AbstractRegisterApiService} from './abstract-register-api.service';
+import {SessionRedirect} from "../interfaces/payload/session-redirect";
+import {environment} from "../../environments/environment";
+import * as faker from "faker";
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +34,11 @@ export class MockRegisterApiService implements AbstractRegisterApiService {
     return of({data: null} as Payload<null>);
   }
 
-  verifyEmail(verifyEmailDDto: VerifyEmailDto): Observable<Payload<null>> {
-    return of({data: null} as Payload<null>);
+  verifyEmail(verifyEmailDDto: VerifyEmailDto): Observable<Payload<SessionRedirect>> {
+    const data: SessionRedirect = {
+      globalSessionId: faker.datatype.uuid(),
+      redirect: environment.fallbackUrl
+    }
+    return of({data} as Payload<SessionRedirect>);
   }
 }

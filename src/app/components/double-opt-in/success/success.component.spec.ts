@@ -1,20 +1,20 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {DoubleOptInComponent} from './double-opt-in.component';
+import {SuccessComponent} from './success.component';
 
-describe('DoubleOptInComponent', () => {
-  let component: DoubleOptInComponent;
-  let fixture: ComponentFixture<DoubleOptInComponent>;
+describe('SuccessComponent', () => {
+  let component: SuccessComponent;
+  let fixture: ComponentFixture<SuccessComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DoubleOptInComponent]
+      declarations: [SuccessComponent]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DoubleOptInComponent);
+    fixture = TestBed.createComponent(SuccessComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,3 +1,3 @@
 export interface VerifyEmailDto {
-  doi: string;
+  hash: string;
 }

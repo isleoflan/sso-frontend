@@ -5,6 +5,7 @@ import {RegisterNewAccountDto} from '../interfaces/dto/register-new-account-dto'
 import {VerifyEmailDto} from '../interfaces/dto/verify-email-dto';
 import {Payload} from '../interfaces/payload';
 import {Availability} from '../interfaces/payload/availability';
+import {SessionRedirect} from "../interfaces/payload/session-redirect";
 
 
 export abstract class AbstractRegisterApiService {
@@ -14,5 +15,5 @@ export abstract class AbstractRegisterApiService {
 
   public abstract registerNewAccount(registerNewAccountDto: RegisterNewAccountDto): Observable<Payload<null>>;
 
-  public abstract verifyEmail(verifyEmailDDto: VerifyEmailDto): Observable<Payload<null>>;
+  public abstract verifyEmail(verifyEmailDDto: VerifyEmailDto): Observable<Payload<SessionRedirect>>;
 }
