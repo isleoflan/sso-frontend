@@ -24,19 +24,18 @@ export class AuthApiService implements AbstractAuthApiService {
   }
 
   loginWithSessionId(loginWithSessionIdDto: LoginWithSessionIdDto): Observable<Payload<Redirect>> {
-    return this.http.post<Payload<Redirect>>('/v1/auth/login', loginWithSessionIdDto).pipe(first());
+    return this.http.post<Payload<Redirect>>('/auth/login', loginWithSessionIdDto).pipe(first());
   }
 
   loginWithUserCredentials(loginWithUserCredentialsDto: LoginWithUserCredentialsDto): Observable<Payload<SessionRedirect>> {
-    return this.http.post<Payload<SessionRedirect>>('/v1/auth/login', loginWithUserCredentialsDto).pipe(first());
+    return this.http.post<Payload<SessionRedirect>>('/auth/login', loginWithUserCredentialsDto).pipe(first());
   }
 
   requestInformation(requestInformationDto: RequestInformationDto): Observable<Payload<RequestInformation>> {
-    return this.http.get<Payload<RequestInformation>>('/v1/auth/request/info', {params: {...requestInformationDto}}).pipe(first());
+    return this.http.get<Payload<RequestInformation>>('/auth/request/info', {params: {...requestInformationDto}}).pipe(first());
   }
 
   sessionInformation(sessionInformationDto: SessionInformationDto): Observable<Payload<SessionInformation>> {
-    return this.http.get<Payload<SessionInformation>>('/v1/auth/request/session', {params: {...sessionInformationDto}}).pipe(first());
+    return this.http.get<Payload<SessionInformation>>('/auth/session/info', {params: {...sessionInformationDto}}).pipe(first());
   }
-
 }

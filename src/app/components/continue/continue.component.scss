@@ -1,0 +1,52 @@
+@use "src/styles/abstracts/index" as *;
+@use "../../../styles/elements/button";
+
+
+img {
+  max-width: 40%;
+  justify-self: center;
+}
+
+.session-user {
+  display: grid;
+  align-items: center;
+  width: 100%;
+  padding: 1em 0;
+  border-top: 1px solid rgba($color-black, 0.1);
+  border-bottom: 1px solid rgba($color-black, 0.1);
+  grid-template-columns: 1fr 5fr;
+  gap: 2em;
+}
+
+.continue {
+  font-size: 1.2em;
+  font-weight: $font-weight-bold;
+  margin: 0;
+}
+
+.avatar {
+  img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    border-radius: 50%;
+  }
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.username {
+  font-size: 1.5em;
+  font-weight: $font-weight-bold;
+  margin: 0;
+}
+
+.email {
+  font-size: 1em;
+  font-weight: $font-weight-regular;
+  margin: 0;
+}
