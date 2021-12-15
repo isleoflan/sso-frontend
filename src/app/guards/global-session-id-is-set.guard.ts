@@ -29,18 +29,14 @@ export class GlobalSessionIdIsSetGuard implements CanLoad, CanActivateChild {
   }
 
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> {
-    return this.isGlobalSessionIdSet$.pipe(
-      map((state) => {
-        if (state) {
-          return state;
-        } else {
-          return this.router.createUrlTree(['/login']);
-        }
-      })
-    );
+    return this.isGlobalSessionIdSet();
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+    return this.isGlobalSessionIdSet();
+  }
+
+  private isGlobalSessionIdSet(): Observable<boolean | UrlTree> {
     return this.isGlobalSessionIdSet$.pipe(
       map((state) => {
         if (state) {
@@ -51,5 +47,4 @@ export class GlobalSessionIdIsSetGuard implements CanLoad, CanActivateChild {
       })
     );
   }
-
 }

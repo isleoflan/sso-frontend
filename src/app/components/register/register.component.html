@@ -41,8 +41,8 @@
       <input autocomplete="family-name" formControlName="lastname" id="lastname" type="text">
     </div>
     <div class="form-control">
-      <label for="birthdate">Date of birth</label>
-      <input autocomplete="bday" formControlName="birthdate" id="birthdate" type="date">
+      <label for="birthDate">Date of birth</label>
+      <input autocomplete="bday" formControlName="birthDate" id="birthDate" type="date">
     </div>
     <div class="form-control">
       <label for="email">Mail</label>
@@ -63,12 +63,13 @@
       <label for="zip-code">ZIP & City</label>
       <div class="city">
         <input autocomplete="postal-code" formControlName="zipCode" id="zip-code" type="number">
-        <input autocomplete="country-name" formControlName="city" id="city" type="text">
+        <input autocomplete="address-level2" formControlName="city" id="city" type="text">
       </div>
     </div>
-
     <div class="form-actions">
-      <button [disabled]="!registerForm.valid" class="button button-primary" type="submit">Register</button>
+      <button [disabled]="!registerForm.valid || (isLoading | async)" class="button button-primary" type="submit">
+        Register
+      </button>
     </div>
   </form>
 </app-card>
