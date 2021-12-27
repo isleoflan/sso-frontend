@@ -1,13 +1,14 @@
-import {Injectable} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {EMPTY, Observable, of} from 'rxjs';
-import {catchError, filter, finalize, share, startWith, switchMap, tap} from 'rxjs/operators';
-import {AbstractAuthApiService} from '../../api/abstract-auth-api.service';
-import {SessionInformation} from '../../interfaces/payload/session-information';
-import {AppState} from '../app.state';
-import {AuthStoreSelectors} from '../auth';
-import {FacadeService} from '../facade.service';
-import {SessionInformationStoreActions, SessionInformationStoreSelectors} from './index';
+import { Injectable } from '@angular/core';
+import { Router } from "@angular/router";
+import { Store } from '@ngrx/store';
+import { EMPTY, Observable, of } from 'rxjs';
+import { catchError, filter, finalize, share, startWith, switchMap, tap } from 'rxjs/operators';
+import { AbstractAuthApiService } from '../../api/abstract-auth-api.service';
+import { SessionInformation } from '../../interfaces/payload/session-information';
+import { AppState } from '../app.state';
+import { AuthStoreSelectors } from '../auth';
+import { FacadeService } from '../facade.service';
+import { SessionInformationStoreActions, SessionInformationStoreSelectors } from './index';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,8 @@ export class SessionInformationFacadeService extends FacadeService {
         })),
         catchError((error) => {
           this.store.dispatch({type: SessionInformationStoreActions.loadSessionInformationFailure.type, error});
+          // redirect to login
+          this.router.navigate(['/login']);
           return of(EMPTY);
         })
       )),
@@ -41,6 +44,7 @@ export class SessionInformationFacadeService extends FacadeService {
 
   constructor(
     private store: Store<AppState>,
+    private router: Router,
     private authApiService: AbstractAuthApiService
   ) {
     super();
