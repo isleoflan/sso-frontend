@@ -1,6 +1,6 @@
-import {HttpErrorResponse} from '@angular/common/http';
-import {createReducer, on} from '@ngrx/store';
-import {SessionInformation} from '../../interfaces/payload/session-information';
+import { HttpErrorResponse } from '@angular/common/http';
+import { createReducer, on } from '@ngrx/store';
+import { SessionInformation } from '../../interfaces/payload/session-information';
 import {
   loadSessionInformation,
   loadSessionInformationCancel,
@@ -59,6 +59,7 @@ export const reducer = createReducer(
     return {
       ...state,
       isLoading: false,
+      error: null
     }
   })
 );
