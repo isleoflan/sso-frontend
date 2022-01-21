@@ -20,11 +20,11 @@ export class ResetApiService implements MockResetApiService {
   }
 
   executeReset(executeResetDto: ExecuteResetDto): Observable<Payload<SessionRedirect>> {
-    return this.http.post<Payload<SessionRedirect>>('/reset/execute', {executeResetDto}).pipe(first());
+    return this.http.post<Payload<SessionRedirect>>('/reset/execute', {...executeResetDto}).pipe(first());
   }
 
   requestReset(requestResetDto: RequestResetDto): Observable<Payload<null>> {
-    return this.http.post<Payload<null>>('/reset/request', {requestResetDto}).pipe(first());
+    return this.http.post<Payload<null>>('/reset/request', {...requestResetDto}).pipe(first());
   }
 
   verifyResetRequest(verifyResetRequestDto: VerifyResetRequestDto): Observable<Payload<null>> {
