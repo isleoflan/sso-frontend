@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first, tap, catchError } from 'rxjs/operators';
 import { AbstractResetApiService } from '../../api/abstract-reset-api.service';
 import { ExecuteResetDto } from '../../interfaces/dto/execute-reset-dto';
+import { AuthFacadeService } from "../../store/auth/auth-facade.service";
 
 @Component({
   selector: 'app-set-password',
@@ -16,6 +17,7 @@ export class SetPasswordComponent implements OnInit {
 
   constructor(
     private resetApiService: AbstractResetApiService,
+    private authFacadeService: AuthFacadeService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -51,7 +53,10 @@ export class SetPasswordComponent implements OnInit {
     };
     this.resetApiService.executeReset(executeResetDto).pipe(
       first(),
-      tap(() => this.router.navigate(['success'], {relativeTo: this.activatedRoute}))
+      tap((payload) => {
+        this.authFacadeService.setGlobalSessionId(payload.data.globalSessionId);
+        this.router.navigate(['/redirect', {externalUrl: payload.data.redirect}]);
+      })
     ).subscribe();
 
   }

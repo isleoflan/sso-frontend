@@ -1,13 +1,8 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {SetPasswordComponent} from './set-password.component';
-import {SuccessComponent} from './success/success.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { SetPasswordComponent } from './set-password.component';
 
 const routes: Routes = [
-  {
-    path: 'success',
-    component: SuccessComponent
-  },
   {
     path: ':hash',
     component: SetPasswordComponent
