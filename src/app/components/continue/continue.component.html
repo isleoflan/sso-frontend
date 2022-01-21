@@ -5,7 +5,7 @@
   </p>
 
   <ng-container *ngIf="(sessionInformation$ | async) as sessionInformation">
-    <h2 class="continue">Continue as</h2>
+    <h2 class="continue">Weiterfahren als</h2>
     <div class="session-user">
       <div class="avatar">
         <img [src]="sessionInformation.avatar" alt="">
@@ -15,7 +15,7 @@
         <h4 class="email">{{sessionInformation.email}}</h4>
       </div>
     </div>
-    <a routerLink="/login" title="Login">Not you? Login with a different account.</a>
-    <button (click)="onContinue()" class="button button-primary">Continue</button>
+    <a routerLink="/login" title="Login">Nicht du? Logge dich mit einem anderen Account ein.</a>
+    <button (click)="onContinue()" class="button button-primary">Weiter</button>
   </ng-container>
 </app-card>

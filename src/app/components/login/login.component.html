@@ -14,17 +14,17 @@
       </ul>
     </ng-container>
     <div class="form-control">
-      <label for="username">Username</label>
+      <label for="username">Bentzername</label>
       <input type="text" id="username" formControlName="username" autocomplete="username">
     </div>
     <div class="form-control">
-      <label for="password">Password</label>
+      <label for="password">Passwort</label>
       <input type="password" id="password" formControlName="password" autocomplete="current-password">
-      <a class="form-control-action" routerLink="/reset-password" title="password reset">password reset</a>
+      <a class="form-control-action" routerLink="/reset-password" title="password reset">Passwort zurücksetzen</a>
     </div>
     <div class="form-actions">
       <button class="button button-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
-      <a class="button button-secondary" routerLink="/register" title="Register">Register</a>
+      <a class="button button-secondary" routerLink="/register" title="Register">Registrieren</a>
     </div>
   </form>
 </app-card>

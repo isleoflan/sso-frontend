@@ -1,13 +1,15 @@
 <app-card>
-  <h1>We encountered an error...</h1>
+  <h1>Da stimmt was nicht.</h1>
   <article>
-    <p>It could be many things:<br> Maybe your mouse movements are to slow or you ping is too high.</p>
-    <p>We have logged the problem, and will investigate it.<br><em>(I hope the log-service is functional and
-      implemented)</em></p>
-    <p>I think / hope a developer will take care of the Issue in the Future. But between us: Try it again later.</p>
+    <p>Es kann an vielem liegen:<br> Eventuell sind deine Bewegungen zu langsam oder dein Ping ist zu hoch.</p>
+    <p>Wir haben das Problem geloggt und werden es uns anschauen.<br><em>(Ich hoffe wir haben einen Log-Service
+      implementiert @stui?!)</em></p>
+
+    <p>Ich denke / hoffe, dass sich ein Entwickler um das Problem kümmert. Aber zwischen uns: Versuche es doch später
+      nocheinmal..</p>
   </article>
   <div class="button-group">
-    <button class="button button-secondary">Do nothing.</button>
-    <a [routerLink]="['/login']" class="button button-primary" title="Login">Try Again</a>
+    <button class="button button-secondary">Mach nix.</button>
+    <a [routerLink]="['/login']" class="button button-primary" title="Login">Neu versuchen</a>
   </div>
 </app-card>

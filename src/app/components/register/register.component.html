@@ -1,66 +1,66 @@
 <app-card>
-  <h1>Register new account</h1>
+  <h1>Registrieren</h1>
   <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="form">
     <div class="form-control">
-      <label for="username">Username</label>
+      <label for="username">Benutzername</label>
       <input autocomplete="username" formControlName="username" id="username" type="text">
     </div>
     <div class="form-control">
-      <label for="password">Password</label>
+      <label for="password">Passwort</label>
       <input autocomplete="new-password" formControlName="password" id="password" type="password">
     </div>
     <div class="form-control">
-      <label for="password-confirm">Confirm password</label>
+      <label for="password-confirm">Passwort wiederholen</label>
       <input autocomplete="new-password" formControlName="passwordConfirm" id="password-confirm" type="password">
     </div>
 
-    <h2 class="form-title">Private informations</h2>
+    <h2 class="form-title">Private Informationen</h2>
     <div class="form-control">
-      <label>Gender</label>
+      <label>Geschlacht</label>
       <div class="form-radio">
         <label class="radio-button">
           <input formControlName="gender" name="gender" type="radio" value="{{MALE}}">
-          <span class="radio-button-value">{{MALE | titlecase}}</span>
+          <span class="radio-button-value">Männlich</span>
         </label>
         <label class="radio-button">
           <input formControlName="gender" name="gender" type="radio" value="{{FEMALE}}">
-          <span class="radio-button-value">{{FEMALE | titlecase}}</span>
+          <span class="radio-button-value">Weiblich</span>
         </label>
         <label class="radio-button">
           <input formControlName="gender" name="gender" type="radio" value="{{OTHER}}">
-          <span class="radio-button-value">{{OTHER | titlecase}}</span>
+          <span class="radio-button-value">Diverse</span>
         </label>
       </div>
     </div>
     <div class="form-control">
-      <label for="forename">Forename</label>
+      <label for="forename">Forname</label>
       <input autocomplete="given-name" formControlName="forename" id="forename" type="text">
     </div>
     <div class="form-control">
-      <label for="lastname">Lastname</label>
+      <label for="lastname">Nachname</label>
       <input autocomplete="family-name" formControlName="lastname" id="lastname" type="text">
     </div>
     <div class="form-control">
-      <label for="birthDate">Date of birth</label>
+      <label for="birthDate">Geburtsdatum</label>
       <input autocomplete="bday" formControlName="birthDate" id="birthDate" type="date">
     </div>
     <div class="form-control">
-      <label for="email">Mail</label>
+      <label for="email">E-Mail</label>
       <input autocomplete="email" formControlName="email" id="email" type="email">
     </div>
     <div class="form-control">
-      <label for="phone">Mobile</label>
+      <label for="phone">Handy Nr.</label>
       <input autocomplete="tel-national" formControlName="phone" id="phone" type="tel">
     </div>
 
-    <h2 class="form-title">Address</h2>
+    <h2 class="form-title">Addresse</h2>
     <div class="form-control">
-      <label for="address">Street & Nr.</label>
+      <label for="address">Strasse & Nr.</label>
       <input autocomplete="street-address" formControlName="address" id="address" type="text">
     </div>
 
     <div class="form-control">
-      <label for="zip-code">ZIP & City</label>
+      <label for="zip-code">PLZ & Ort</label>
       <div class="city">
         <input autocomplete="postal-code" formControlName="zipCode" id="zip-code" type="number">
         <input autocomplete="address-level2" formControlName="city" id="city" type="text">
@@ -68,7 +68,7 @@
     </div>
     <div class="form-actions">
       <button [disabled]="!registerForm.valid || (isLoading | async)" class="button button-primary" type="submit">
-        Register
+        Registrieren
       </button>
     </div>
   </form>
