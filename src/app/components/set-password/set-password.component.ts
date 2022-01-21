@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {first, tap} from 'rxjs/operators';
-import {AbstractResetApiService} from '../../api/abstract-reset-api.service';
-import {ExecuteResetDto} from '../../interfaces/dto/execute-reset-dto';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first, tap } from 'rxjs/operators';
+import { AbstractResetApiService } from '../../api/abstract-reset-api.service';
+import { ExecuteResetDto } from '../../interfaces/dto/execute-reset-dto';
 
 @Component({
   selector: 'app-set-password',
@@ -29,14 +29,19 @@ export class SetPasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const executeResetDto: ExecuteResetDto = {
-      resetId: 'asdf', // ToDo: to be defined
-      password: this.setPasswordForm.value.password,
+    if (this.activatedRoute.snapshot.paramMap.has('hash')) {
+      const resetId = this.activatedRoute.snapshot.paramMap.get('hash') as string;
+
+      const executeResetDto: ExecuteResetDto = {
+        resetId,
+        password: this.setPasswordForm.value.password
+      };
+      this.resetApiService.executeReset(executeResetDto).pipe(
+        first(),
+        tap(() => this.router.navigate(['success'], {relativeTo: this.activatedRoute}))
+      ).subscribe();
     }
-    this.resetApiService.executeReset(executeResetDto).pipe(
-      first(),
-      tap(() => this.router.navigate(['success'], {relativeTo: this.activatedRoute})),
-    ).subscribe();
+
   }
 
 }
