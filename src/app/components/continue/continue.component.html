@@ -5,7 +5,7 @@
   </p>
 
   <ng-container *ngIf="(sessionInformation$ | async) as sessionInformation">
-    <h2 class="continue">Weiterfahren als</h2>
+    <h2 class="continue">Weiterfahren als:</h2>
     <div class="session-user">
       <div class="avatar">
         <img [src]="sessionInformation.avatar" alt="">
