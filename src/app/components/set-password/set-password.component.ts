@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, tap, catchError } from 'rxjs/operators';
 import { AbstractResetApiService } from '../../api/abstract-reset-api.service';
@@ -13,7 +13,10 @@ import { AuthFacadeService } from "../../store/auth/auth-facade.service";
 })
 export class SetPasswordComponent implements OnInit {
 
-  setPasswordForm: UntypedFormGroup = new UntypedFormGroup({});
+  setPasswordForm = new FormGroup({
+    password: new FormControl<string>('', [Validators.required]),
+    passwordConfirm: new FormControl<string>('', [Validators.required])
+  });
 
   constructor(
     private resetApiService: AbstractResetApiService,
@@ -37,11 +40,6 @@ export class SetPasswordComponent implements OnInit {
     } else {
       this.router.navigate(['/redirect', {externalUrl: 'https://isleoflan.ch'}]);
     }
-
-    this.setPasswordForm = new UntypedFormGroup({
-      password: new UntypedFormControl('', [Validators.required]),
-      passwordConfirm: new UntypedFormControl('', [Validators.required])
-    });
   }
 
   onSubmit(): void {
@@ -49,7 +47,7 @@ export class SetPasswordComponent implements OnInit {
 
     const executeResetDto: ExecuteResetDto = {
       resetId,
-      password: this.setPasswordForm.value.password
+      password: this.setPasswordForm.value.password!
     };
     this.resetApiService.executeReset(executeResetDto).pipe(
       first(),

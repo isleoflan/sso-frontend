@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, EMPTY, of } from "rxjs";
 import { catchError, first, tap } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { AuthFacadeService } from '../../store/auth/auth-facade.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -22,19 +22,19 @@ export class RegisterComponent implements OnInit {
   FEMALE = Gender.FEMALE;
   OTHER = Gender.OTHER;
 
-  registerForm: UntypedFormGroup = new UntypedFormGroup({
-    username: new UntypedFormControl('', [Validators.required], [this.customValidatorService.checkForExistingUsername]),
-    password: new UntypedFormControl('', [Validators.required]),
-    passwordConfirm: new UntypedFormControl('', [Validators.required]),
-    gender: new UntypedFormControl('', [Validators.required]),
-    forename: new UntypedFormControl('', [Validators.required]),
-    lastname: new UntypedFormControl('', [Validators.required]),
-    birthDate: new UntypedFormControl('', [Validators.required]),
-    email: new UntypedFormControl('', [Validators.required, Validators.email], [this.customValidatorService.checkForExistingEmail]),
-    phone: new UntypedFormControl('', [Validators.required, this.customValidatorService.phoneNumber]),
-    address: new UntypedFormControl('', [Validators.required]),
-    zipCode: new UntypedFormControl('', [Validators.required, Validators.min(1000), Validators.max(9999)]),
-    city: new UntypedFormControl('', [Validators.required])
+  registerForm = new FormGroup({
+    username: new FormControl<string>('', [Validators.required], [this.customValidatorService.checkForExistingUsername]),
+    password: new FormControl<string>('', [Validators.required]),
+    passwordConfirm: new FormControl<string>('', [Validators.required]),
+    gender: new FormControl<Gender>(Gender.MALE, [Validators.required]),
+    forename: new FormControl<string>('', [Validators.required]),
+    lastname: new FormControl<string>('', [Validators.required]),
+    birthDate: new FormControl<string>('', [Validators.required]),
+    email: new FormControl<string>('', [Validators.required, Validators.email], [this.customValidatorService.checkForExistingEmail]),
+    phone: new FormControl<string>('', [Validators.required, this.customValidatorService.phoneNumber]),
+    address: new FormControl<string>('', [Validators.required]),
+    zipCode: new FormControl<string>('', [Validators.required, Validators.min(1000), Validators.max(9999)]),
+    city: new FormControl<string>('', [Validators.required])
   }, [this.customValidatorService.passwordConfirm('password', 'passwordConfirm')]);
 
   constructor(
@@ -46,12 +46,6 @@ export class RegisterComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-    this.registerForm.patchValue({
-      gender: this.MALE
-    });
-  }
-
   onSubmit(): void {
     const values = this.registerForm.value;
 
@@ -61,21 +55,21 @@ export class RegisterComponent implements OnInit {
       const registerNewAccountDto: RegisterNewAccountDto = {
         loginRequestId: loginRequestId,
 
-        username: values.username,
-        password: values.password,
+        username: values.username!,
+        password: values.password!,
 
-        gender: values.gender,
-        forename: values.forename,
-        lastname: values.lastname,
+        gender: values.gender!,
+        forename: values.forename!,
+        lastname: values.lastname!,
 
-        address: values.address,
-        zipCode: parseInt(values.zipCode, 10),
-        city: values.city,
+        address: values.address!,
+        zipCode: parseInt(values.zipCode!, 10),
+        city: values.city!,
 
-        birthDate: new Date(values.birthDate),
+        birthDate: new Date(values.birthDate!),
 
-        email: values.email,
-        phone: values.phone
+        email: values.email!,
+        phone: values.phone!
       }
       this.registerApiService.registerNewAccount(registerNewAccountDto).pipe(
         first(),

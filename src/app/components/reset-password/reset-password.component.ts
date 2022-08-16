@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, tap } from 'rxjs/operators';
 import { AbstractResetApiService } from '../../api/abstract-reset-api.service';
@@ -12,9 +12,11 @@ import { RequestInformationFacadeService } from '../../store/request-information
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent {
 
-  resetPasswordForm: UntypedFormGroup = new UntypedFormGroup({});
+  resetPasswordForm = new FormGroup({
+    email: new FormControl<string>('', [Validators.required, Validators.email])
+  });
   requestInformation$ = this.requestInformationFacadeService.requestInformation$;
 
   constructor(
@@ -26,19 +28,12 @@ export class ResetPasswordComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-
-    this.resetPasswordForm = new UntypedFormGroup({
-      email: new UntypedFormControl('', [Validators.required, Validators.email])
-    });
-  }
-
   onSubmit(): void {
     if (this.resetPasswordForm.valid) {
       this.authFacadeService.loginRequestId$.subscribe((loginRequestId) => {
         const requestResetDto: RequestResetDto = {
-          ...this.resetPasswordForm.value,
-          loginRequestId,
+          email: this.resetPasswordForm.value.email!,
+          loginRequestId
         };
         this.resetApiService.requestReset(requestResetDto).pipe(
           first(),

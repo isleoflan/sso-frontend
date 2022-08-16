@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { EMPTY, of, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { LoginWithUserCredentialsDto } from '../../interfaces/dto/login-with-user-credentials-dto';
-import { LoginForm } from "../../interfaces/form/login-form";
 import { ErrorPayload } from '../../interfaces/payload';
 import { AuthFacadeService } from '../../store/auth/auth-facade.service';
 import { RequestInformationFacadeService } from '../../store/request-information/request-information-facade.service';
@@ -19,7 +18,7 @@ export class LoginComponent implements OnInit {
   requestInformation$ = this.requestInformationFacadeService.requestInformation$;
   apiErrors$: Subject<ErrorPayload[]> = new Subject<ErrorPayload[]>();
 
-  loginForm = new FormGroup<LoginForm>({
+  loginForm = new FormGroup({
     username: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
     password: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]})
   });
