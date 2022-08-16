@@ -1,4 +1,4 @@
 export interface RequestResetDto {
-  loginRequestId: string;
-  username: string;
+  loginRequestId: string | null;
+  email: string;
 }
