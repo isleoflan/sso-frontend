@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, tap, catchError } from 'rxjs/operators';
 import { AbstractResetApiService } from '../../api/abstract-reset-api.service';
@@ -13,7 +13,7 @@ import { AuthFacadeService } from "../../store/auth/auth-facade.service";
 })
 export class SetPasswordComponent implements OnInit {
 
-  setPasswordForm: FormGroup = new FormGroup({});
+  setPasswordForm: UntypedFormGroup = new UntypedFormGroup({});
 
   constructor(
     private resetApiService: AbstractResetApiService,
@@ -38,9 +38,9 @@ export class SetPasswordComponent implements OnInit {
       this.router.navigate(['/redirect', {externalUrl: 'https://isleoflan.ch'}]);
     }
 
-    this.setPasswordForm = new FormGroup({
-      password: new FormControl('', [Validators.required]),
-      passwordConfirm: new FormControl('', [Validators.required])
+    this.setPasswordForm = new UntypedFormGroup({
+      password: new UntypedFormControl('', [Validators.required]),
+      passwordConfirm: new UntypedFormControl('', [Validators.required])
     });
   }
 

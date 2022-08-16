@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {catchError, first, tap} from 'rxjs/operators';
-import {AbstractRegisterApiService} from '../../api/abstract-register-api.service';
-import {RegisterNewAccountDto} from '../../interfaces/dto/register-new-account-dto';
-import {Gender} from '../../interfaces/enum/gender';
-import {CustomValidatorService} from '../../services/custom-validator.service';
-import {AuthFacadeService} from '../../store/auth/auth-facade.service';
-import {BehaviorSubject, EMPTY, of} from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, EMPTY, of } from "rxjs";
+import { catchError, first, tap } from 'rxjs/operators';
+import { AbstractRegisterApiService } from '../../api/abstract-register-api.service';
+import { RegisterNewAccountDto } from '../../interfaces/dto/register-new-account-dto';
+import { Gender } from '../../interfaces/enum/gender';
+import { CustomValidatorService } from '../../services/custom-validator.service';
+import { AuthFacadeService } from '../../store/auth/auth-facade.service';
 
 @Component({
   selector: 'app-register',
@@ -22,19 +22,19 @@ export class RegisterComponent implements OnInit {
   FEMALE = Gender.FEMALE;
   OTHER = Gender.OTHER;
 
-  registerForm: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required], [this.customValidatorService.checkForExistingUsername]),
-    password: new FormControl('', [Validators.required]),
-    passwordConfirm: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
-    forename: new FormControl('', [Validators.required]),
-    lastname: new FormControl('', [Validators.required]),
-    birthDate: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email], [this.customValidatorService.checkForExistingEmail]),
-    phone: new FormControl('', [Validators.required, this.customValidatorService.phoneNumber]),
-    address: new FormControl('', [Validators.required]),
-    zipCode: new FormControl('', [Validators.required, Validators.min(1000), Validators.max(9999)]),
-    city: new FormControl('', [Validators.required])
+  registerForm: UntypedFormGroup = new UntypedFormGroup({
+    username: new UntypedFormControl('', [Validators.required], [this.customValidatorService.checkForExistingUsername]),
+    password: new UntypedFormControl('', [Validators.required]),
+    passwordConfirm: new UntypedFormControl('', [Validators.required]),
+    gender: new UntypedFormControl('', [Validators.required]),
+    forename: new UntypedFormControl('', [Validators.required]),
+    lastname: new UntypedFormControl('', [Validators.required]),
+    birthDate: new UntypedFormControl('', [Validators.required]),
+    email: new UntypedFormControl('', [Validators.required, Validators.email], [this.customValidatorService.checkForExistingEmail]),
+    phone: new UntypedFormControl('', [Validators.required, this.customValidatorService.phoneNumber]),
+    address: new UntypedFormControl('', [Validators.required]),
+    zipCode: new UntypedFormControl('', [Validators.required, Validators.min(1000), Validators.max(9999)]),
+    city: new UntypedFormControl('', [Validators.required])
   }, [this.customValidatorService.passwordConfirm('password', 'passwordConfirm')]);
 
   constructor(
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
     private authFacadeService: AuthFacadeService,
     private registerApiService: AbstractRegisterApiService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {
   }
 

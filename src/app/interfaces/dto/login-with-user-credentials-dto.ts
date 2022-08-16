@@ -1,5 +1,5 @@
 export interface LoginWithUserCredentialsDto {
-  loginRequestId: string;
+  loginRequestId: string | null;
   username: string;
   password: string;
 }
