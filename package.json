@@ -22,6 +22,8 @@
     "@ngrx/effects": "^14.1.0",
     "@ngrx/store": "^14.1.0",
     "@ngrx/store-devtools": "^14.1.0",
+    "@sentry/angular": "^7.10.0",
+    "@sentry/tracing": "^7.10.0",
     "libphonenumber-js": "^1.9.39",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
